@@ -1,0 +1,40 @@
+NAME                         READY   STATUS      RESTARTS   AGE
+pod/api-9f997cfd5-4fp5l      1/1     Running     0          2m28s
+pod/api-9f997cfd5-d27cz      1/1     Running     0          2m21s
+pod/api-9f997cfd5-db8n8      1/1     Running     0          2m24s
+pod/chroma-0                 1/1     Running     0          17m
+pod/indexer-dj2nm            0/1     Pending     0          32m
+pod/indexer-dummy-fk8p6      0/1     Completed   0          14m
+pod/redis-785b7dc475-ntgq7   1/1     Running     0          32m
+pod/ui-595876996-dvr6t       1/1     Running     0          31m
+
+NAME             TYPE        CLUSTER-IP       EXTERNAL-IP   PORT(S)    AGE
+service/api      ClusterIP   10.101.31.98     <none>        80/TCP     32m
+service/chroma   ClusterIP   10.105.113.145   <none>        8000/TCP   32m
+service/redis    ClusterIP   10.111.50.116    <none>        6379/TCP   32m
+service/ui       ClusterIP   10.101.34.244    <none>        80/TCP     32m
+
+NAME                    READY   UP-TO-DATE   AVAILABLE   AGE
+deployment.apps/api     3/3     3            3           32m
+deployment.apps/redis   1/1     1            1           32m
+deployment.apps/ui      1/1     1            1           32m
+
+NAME                               DESIRED   CURRENT   READY   AGE
+replicaset.apps/api-6486f6b5fb     0         0         0       32m
+replicaset.apps/api-9f997cfd5      3         3         3       2m28s
+replicaset.apps/redis-785b7dc475   1         1         1       32m
+replicaset.apps/ui-595876996       1         1         1       31m
+replicaset.apps/ui-fc78555b9       0         0         0       32m
+
+NAME                      READY   AGE
+statefulset.apps/chroma   1/1     17m
+
+NAME                                      REFERENCE        TARGETS       MINPODS   MAXPODS   REPLICAS   AGE
+horizontalpodautoscaler.autoscaling/api   Deployment/api   cpu: 2%/70%   3         8         3          32m
+
+NAME                    SCHEDULE    TIMEZONE   SUSPEND   ACTIVE   LAST SCHEDULE   AGE
+cronjob.batch/reindex   0 2 * * 0   <none>     False     0        <none>          32m
+
+NAME                      STATUS     COMPLETIONS   DURATION   AGE
+job.batch/indexer         Running    0/1           32m        32m
+job.batch/indexer-dummy   Complete   1/1           4s         14m

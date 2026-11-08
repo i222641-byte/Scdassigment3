@@ -20,6 +20,10 @@ venv/
 .mypy_cache/
 .ruff_cache/
 
+# Test artifacts
+.coverage
+htmlcov/
+
 # Local scratch
 *.log
 .DS_Store
