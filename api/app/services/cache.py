@@ -123,8 +123,17 @@ class SemanticCache:
             return None
 
     def put(self, question: str, response: dict) -> None:
-        """Store the question vector and response dict in Redis."""
+        """Store the question vector and response dict in Redis.
+
+        Never-cache rule: abstentions (answered_from_context=False) must not
+        be cached — a future re-index might add the missing document, and
+        serving a stale abstention would silently regress recall.
+        """
         if self._redis is None:
+            return
+        # Never cache abstentions — the corpus may be re-indexed with new docs
+        if not response.get("answered_from_context", True):
+            log.debug("skipping cache put: abstention never cached")
             return
 
         vec = self._embed(question)
