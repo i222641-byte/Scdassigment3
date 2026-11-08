@@ -122,17 +122,21 @@ class SemanticCache:
             log.warning("cache get failed", extra={"error": str(exc)})
             return None
 
-    def put(self, question: str, response: dict) -> None:
-        """Store the question vector and response dict in Redis.
+    @staticmethod
+    def _never_cache(response: dict) -> bool:
+        """Return True for responses that must never be cached.
 
-        Never-cache rule: abstentions (answered_from_context=False) must not
-        be cached — a future re-index might add the missing document, and
-        serving a stale abstention would silently regress recall.
+        Abstentions (answered_from_context=False) must not be stored — a
+        re-index may add the previously-missing document, and replaying a
+        cached abstention would silently regress recall for that topic.
         """
+        return not response.get("answered_from_context", True)
+
+    def put(self, question: str, response: dict) -> None:
+        """Store the question vector and response dict in Redis."""
         if self._redis is None:
             return
-        # Never cache abstentions — the corpus may be re-indexed with new docs
-        if not response.get("answered_from_context", True):
+        if self._never_cache(response):
             log.debug("skipping cache put: abstention never cached")
             return
 
