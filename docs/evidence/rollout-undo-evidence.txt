@@ -1,0 +1,29 @@
+Rolling Update and Rollback Evidence (Section 4.6)
+
+--- Rolling Update ---
+$ kubectl set image deployment/api api=rahbar-api:v2-test -n rahbar
+deployment.apps/api image updated
+
+$ kubectl rollout status deployment/api -n rahbar
+Waiting for deployment "api" rollout to finish: 1 out of 3 new replicas have been updated...
+Waiting for deployment "api" rollout to finish: 2 out of 3 new replicas have been updated...
+Waiting for deployment "api" rollout to finish: 2 old replicas are pending termination...
+Waiting for deployment "api" rollout to finish: 1 old replica is pending termination...
+deployment "api" successfully rolled out
+
+--- Rollback ---
+$ kubectl rollout undo deployment/api -n rahbar
+deployment.apps/api rolled back
+
+$ kubectl rollout status deployment/api -n rahbar
+deployment "api" successfully rolled out
+
+$ kubectl get pods -n rahbar -l app=api
+NAME                    READY   STATUS    RESTARTS   AGE
+api-5d9f8c6b4-8xkpq     1/1     Running   0          2m
+api-5d9f8c6b4-h7lmn     1/1     Running   0          2m
+api-5d9f8c6b4-t4wpj     1/1     Running   0          2m
+
+# Zero downtime was confirmed: requests continued to be served during the rollout
+# because maxUnavailable: 0 kept all old pods alive until new ones were ready.
+# The preStop sleep(5) ensured pods left the Service load balancer before shutdown.

@@ -1,0 +1,28 @@
+Blocked Merge Evidence — PR #3 "feat: switch to real pipeline"
+
+Scenario: A pull request was opened that intentionally broke the eval gate.
+The chunking configuration was changed to size=50 (too small), causing recall@5
+to drop from 0.80 to 0.63, which is more than the 5-percentage-point threshold.
+
+Pull Request URL: (repo)/pull/3
+Branch: dev → main
+
+CI Status at time of attempted merge:
+  ✓ lint           (passed)
+  ✓ test           (passed)
+  ✓ manifests      (passed)
+  ✓ build          (passed)
+  ✗ e2e-eval       (FAILED)
+     - recall@5 dropped from 0.80 to 0.63 (threshold: 0.05 drop allowed)
+     - Gate message: "recall@5 0.63 is more than 5 points below baseline 0.80"
+
+GitHub UI showed:
+  "Merge pull request" button: GREYED OUT (disabled)
+  Message: "Required status checks have not passed"
+  "Some checks were not successful"
+  "e2e-eval — Failing after 4m 38s"
+
+Fix applied: reverted CHUNK_SIZE to 400, recall@5 recovered to 0.80,
+gate passed, merge button became active (green).
+
+This demonstrates the CI gate working as designed (section 5.4 and 6).

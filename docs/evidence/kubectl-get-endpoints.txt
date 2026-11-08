@@ -1,0 +1,15 @@
+$ kubectl get endpoints -n rahbar
+NAME      ENDPOINTS                                              AGE
+api       10.244.0.15:8000,10.244.0.16:8000,10.244.0.17:8000   12m
+chroma    10.244.0.12:8000                                       12m
+redis     10.244.0.13:6379                                       12m
+ui        10.244.0.14:8080                                       12m
+
+# After scaling the api Deployment to verify the HPA / Service label selector:
+$ kubectl scale deployment api -n rahbar --replicas=5
+deployment.apps/api scaled
+
+$ kubectl get endpoints api -n rahbar
+NAME   ENDPOINTS                                                                   AGE
+api    10.244.0.15:8000,10.244.0.16:8000,10.244.0.17:8000,10.244.0.18:8000,10.244.0.19:8000   13m
+# We did NOT touch the Service — its selector { app: api } found the new pods automatically.

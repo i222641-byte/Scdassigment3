@@ -1,0 +1,23 @@
+$ kubectl top pods -n rahbar
+NAME                    CPU(cores)   MEMORY(bytes)
+api-5d9f8c6b4-8xkpq     42m          198Mi
+api-5d9f8c6b4-h7lmn     38m          201Mi
+api-5d9f8c6b4-t4wpj     45m          195Mi
+chroma-0                23m          487Mi
+redis-74b9d9d7f-k9rzs   8m           32Mi
+ui-7b6f8d9c4-9pqrt      3m           18Mi
+
+# Peak during indexer Job
+$ kubectl top pods -n rahbar
+NAME                       CPU(cores)   MEMORY(bytes)
+indexer-initial-xt7vb      1842m        2156Mi
+api-5d9f8c6b4-8xkpq        12m          192Mi
+...
+
+# Resource request/limit justification (Section 4.5):
+# API: requests.cpu=250m (actual avg ~40m), limits.cpu=1 (burst for embedding)
+#      requests.memory=256Mi (actual ~200Mi), limits.memory=512Mi
+# Indexer: requests.cpu=500m, limits.cpu=2000m,
+#           requests.memory=1024Mi, limits.memory=3072Mi (embedding = OOM risk!)
+# Chroma: requests.cpu=250m, limits.cpu=1000m
+#         requests.memory=512Mi, limits.memory=2048Mi

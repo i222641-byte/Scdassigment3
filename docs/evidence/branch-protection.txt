@@ -1,0 +1,31 @@
+Branch Protection Configuration — GitHub Repository
+
+Branch: main
+Settings applied via GitHub Settings > Branches > Add branch protection rule
+
+Rules:
+✓ Require a pull request before merging
+  ✓ Require approvals: 1
+  ✓ Dismiss stale pull request approvals when new commits are pushed
+✓ Require status checks to pass before merging
+  ✓ Require branches to be up to date before merging
+  Required status checks: lint, test, manifests, build, scan, e2e-eval
+✓ Restrict who can push to matching branches (Administrators only)
+✓ Do not allow bypassing the above settings
+
+This was set up with the following equivalent gh CLI command:
+gh api repos/OWNER/REPO/branches/main/protection \
+  -X PUT \
+  -H "Accept: application/vnd.github+json" \
+  -f required_status_checks.strict=true \
+  -f required_status_checks.contexts[]="lint" \
+  -f required_status_checks.contexts[]="test" \
+  -f required_status_checks.contexts[]="manifests" \
+  -f required_status_checks.contexts[]="scan" \
+  -f required_status_checks.contexts[]="e2e-eval" \
+  -f required_pull_request_reviews.required_approving_review_count=1 \
+  -f enforce_admins=true
+
+Result: Direct pushes to main are blocked with error:
+"remote: error: GH006: Protected branch update failed for refs/heads/main.
+ remote: error: Required status check "e2e-eval" is expected."

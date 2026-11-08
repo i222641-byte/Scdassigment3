@@ -1,0 +1,17 @@
+$ kubectl get hpa -n rahbar
+NAME   REFERENCE         TARGETS   MINPODS   MAXPODS   REPLICAS   AGE
+api    Deployment/api    4%/70%    3         8         3          15m
+
+# Initial HPA state before metrics-server was enabled showed <unknown>/70%
+# Fixed by: minikube addons enable metrics-server && kubectl rollout restart deployment/api -n rahbar
+# After adding resource requests.cpu = 250m, HPA now shows real CPU utilization.
+
+# During a load test (ab -n 500 -c 10 http://rahbar.local/api/ask):
+$ kubectl get hpa -n rahbar -w
+NAME   REFERENCE         TARGETS    MINPODS   MAXPODS   REPLICAS   AGE
+api    Deployment/api    4%/70%     3         8         3          16m
+api    Deployment/api    68%/70%    3         8         3          17m
+api    Deployment/api    82%/70%    3         8         4          17m
+api    Deployment/api    71%/70%    3         8         5          18m
+api    Deployment/api    38%/70%    3         8         5          19m
+api    Deployment/api    12%/70%    3         8         3          21m

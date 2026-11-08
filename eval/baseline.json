@@ -1,0 +1,13 @@
+{
+  "recall_at_3": 0.72,
+  "recall_at_5": 0.80,
+  "citation_validity": 0.97,
+  "abstention_correctness": 1.0,
+  "by_type": {
+    "ordinary": 0.85,
+    "version": 0.75,
+    "exact": 0.65,
+    "abstain": null,
+    "injection": 1.0
+  }
+}
