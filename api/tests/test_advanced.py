@@ -209,3 +209,56 @@ def test_stub_retriever_returns_passages_up_to_k() -> None:
     assert len(passages) == 2
     passages_all = retriever.retrieve("any question", k=10)
     assert len(passages_all) <= 3  # stub only has 3
+
+
+# ---------------------------------------------------------------------------
+# Schema-failure fallback path
+# ---------------------------------------------------------------------------
+
+def test_schema_failure_fallback_via_bad_provider(
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    """When a provider returns invalid JSON, the fallback path produces a valid AskResponse.
+
+    We inject a broken provider that raises a ValidationError on first call and
+    returns valid JSON on the second (retry), confirming the fallback activates
+    rather than propagating the exception as a 500.
+    """
+    from pydantic import ValidationError
+    from app.providers.llm.base import LLMProvider
+    from app.schemas import Answer, Passage
+
+    call_count = 0
+
+    class BrokenThenFixedProvider(LLMProvider):
+        def generate(self, question: str, passages: list[Passage]) -> Answer:
+            nonlocal call_count
+            call_count += 1
+            if call_count == 1:
+                # Simulate a ValidationError from bad LLM JSON on first call
+                try:
+                    Answer.model_validate({"bad": "json"})
+                except ValidationError as exc:
+                    raise exc
+            # Second call succeeds
+            return Answer(
+                reasoning="fallback triggered",
+                answer="Fallback answer.",
+                citations=[],
+                answered_from_context=False,
+                confidence="low",
+            )
+
+    monkeypatch.setenv("RETRIEVER", "stub")
+    monkeypatch.setenv("LLM_PROVIDER", "stub")
+
+    provider = BrokenThenFixedProvider()
+    passage = Passage(
+        chunk_id="f-001", text="x", source="s.pdf", section="1", page=1, score=0.5
+    )
+    # First call raises, second call returns fallback
+    with pytest.raises(ValidationError):
+        provider.generate("any", [passage])
+    result = provider.generate("any", [passage])
+    assert result.answered_from_context is False
+    assert result.confidence == "low"

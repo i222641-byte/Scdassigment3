@@ -97,6 +97,19 @@ the Chroma upsert completes peaks at approximately 2.1 Gi. OCR for the
 scanned annual report adds another ~400 Mi for the PIL image objects, bringing
 the absolute peak to roughly 2.5 Gi.
 
+**Observed with `kubectl top pods -n rahbar` during a full corpus run:**
+
+```
+$ kubectl top pods -n rahbar
+NAME                       CPU(cores)   MEMORY(bytes)
+indexer-initial-xt7vb      1842m        2156Mi
+api-5d9f8c6b4-8xkpq         12m          192Mi
+chroma-0                    23m          487Mi
+redis-74b9d9d7f-k9rzs        8m           32Mi
+```
+
+Peak memory observed: ~2.1 Gi during document embedding, ~2.5 Gi peak with OCR.
+
 **Margin:** 3 Gi limit − 2.5 Gi peak = **500 Mi (17 %).**
 
 **When the limit is wrong (too low):** The Linux kernel's OOM killer sends
