@@ -1,0 +1,83 @@
+# A03 F3: the candidate runs as a SECOND Deployment with its own Service and its own
+# collection. It shares the role=query-api label (so the NetworkPolicy treats it like the live
+# API) but not app=api, so the live Service never routes users to it.
+# Point it at another collection with:
+#   kubectl set env deployment/api-candidate -n rahbar CHROMA_COLLECTION=rahbar_v3_c60 RELEASE=v3-c60-candidate
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: api-candidate
+  namespace: rahbar
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: api-candidate
+  strategy:
+    type: RollingUpdate
+    rollingUpdate: { maxSurge: 1, maxUnavailable: 0 }
+  template:
+    metadata:
+      labels:
+        app: api-candidate
+        role: query-api
+    spec:
+      serviceAccountName: rahbar-api
+      automountServiceAccountToken: false
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 1000
+        fsGroup: 1000
+      containers:
+        - name: api
+          image: rahbar-api:3.0.2
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 8000
+          envFrom:
+            - configMapRef:
+                name: rahbar-config
+          env:
+            - name: RELEASE
+              value: "v2-c250-candidate"
+            - name: CHROMA_COLLECTION
+              value: "rahbar_v2_c250"
+          resources:
+            requests: { cpu: "100m", memory: "448Mi" }   # F5: measured ~400Mi
+            limits: { cpu: "1", memory: "768Mi" }
+          startupProbe:
+            httpGet: { path: /healthz, port: 8000 }
+            failureThreshold: 30
+            periodSeconds: 2
+          livenessProbe:
+            httpGet: { path: /healthz, port: 8000 }
+            periodSeconds: 20
+          readinessProbe:
+            httpGet: { path: /readyz, port: 8000 }
+            periodSeconds: 10
+            timeoutSeconds: 5
+          securityContext:
+            readOnlyRootFilesystem: true
+            allowPrivilegeEscalation: false
+            capabilities: { drop: ["ALL"] }
+          volumeMounts:
+            - { name: ops, mountPath: /ops }
+            - { name: tmp, mountPath: /tmp }
+      volumes:
+        - name: ops
+          persistentVolumeClaim: { claimName: ops-pvc }
+        - name: tmp
+          emptyDir: {}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: api-candidate
+  namespace: rahbar
+spec:
+  type: ClusterIP
+  selector:
+    app: api-candidate
+  ports:
+    - port: 80
+      targetPort: 8000

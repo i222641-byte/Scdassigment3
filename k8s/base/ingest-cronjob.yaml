@@ -1,0 +1,63 @@
+# A03 F2: ingestion with verification on a schedule. The same pod template is used by the
+# one-off Job (k8s/jobs/ingest-job.yaml) and by `kubectl create job --from=cronjob/ingest`.
+# concurrencyPolicy: Forbid + parallelism 1 => never two writers at once. This Job is the ONLY
+# writer to the vector store: the API code has no write path, and the NetworkPolicy admits only
+# query-API pods (read) and app=indexer pods (this Job) to Chroma; the eval Job cannot reach it.
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: ingest
+  namespace: rahbar
+spec:
+  schedule: "0 */6 * * *"
+  concurrencyPolicy: Forbid
+  successfulJobsHistoryLimit: 3
+  failedJobsHistoryLimit: 3
+  jobTemplate:
+    spec:
+      backoffLimit: 2
+      parallelism: 1
+      completions: 1
+      template:
+        metadata:
+          labels:
+            app: indexer
+        spec:
+          serviceAccountName: rahbar-indexer
+          automountServiceAccountToken: false
+          restartPolicy: Never
+          securityContext:
+            runAsNonRoot: true
+            runAsUser: 1000
+            fsGroup: 1000
+          containers:
+            - name: ingest
+              image: rahbar-indexer:3.0.0
+              imagePullPolicy: IfNotPresent
+              args: ["python", "-m", "pipeline.run", "--mode", "sync"]
+              envFrom:
+                - configMapRef:
+                    name: rahbar-config
+              resources:
+                requests:
+                  cpu: "500m"
+                  memory: "768Mi"   # F5: ingest peak 1085Mi during OCR
+                limits:
+                  cpu: "2"
+                  memory: "2Gi"
+              securityContext:
+                readOnlyRootFilesystem: true
+                allowPrivilegeEscalation: false
+                capabilities:
+                  drop: ["ALL"]
+              volumeMounts:
+                - name: data
+                  mountPath: /data
+                - name: tmp
+                  mountPath: /tmp
+          volumes:
+            - name: data
+              persistentVolumeClaim:
+                claimName: datalake-pvc
+            - name: tmp
+              emptyDir: {}

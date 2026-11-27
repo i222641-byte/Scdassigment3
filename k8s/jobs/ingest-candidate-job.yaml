@@ -1,0 +1,61 @@
+# A03 C1/F3: build the CANDIDATE collection (chunk 250/50) from the same data lake.
+# Writes only to rahbar_v2_c250; the live collection is untouched.
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: ingest-candidate
+  namespace: rahbar
+spec:
+  backoffLimit: 2
+  parallelism: 1
+  completions: 1
+  template:
+    metadata:
+      labels:
+        app: indexer
+    spec:
+      serviceAccountName: rahbar-indexer
+      automountServiceAccountToken: false
+      restartPolicy: Never
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 1000
+        fsGroup: 1000
+      containers:
+        - name: ingest
+          image: rahbar-indexer:3.0.0
+          imagePullPolicy: IfNotPresent
+          args: ["python", "-m", "pipeline.run"]
+          envFrom:
+            - configMapRef:
+                name: rahbar-config
+          env:
+            - name: INGEST_MODE
+              value: "sync"
+            - name: CHROMA_COLLECTION
+              value: "rahbar_v2_c250"
+            - name: CHUNK_SIZE
+              value: "250"
+            - name: CHUNK_OVERLAP
+              value: "50"
+          resources:
+            requests:
+              cpu: "500m"
+              memory: "768Mi"   # F5: ingest peak 1085Mi during OCR
+            limits:
+              cpu: "2"
+              memory: "2Gi"
+          securityContext:
+            readOnlyRootFilesystem: true
+            allowPrivilegeEscalation: false
+            capabilities:
+              drop: ["ALL"]
+          volumeMounts:
+            - { name: data, mountPath: /data }
+            - { name: tmp, mountPath: /tmp }
+      volumes:
+        - name: data
+          persistentVolumeClaim:
+            claimName: datalake-pvc
+        - name: tmp
+          emptyDir: {}

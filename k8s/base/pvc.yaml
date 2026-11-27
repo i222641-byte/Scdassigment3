@@ -1,0 +1,24 @@
+# A03 F1: the data lake (corpus landing zone, accepted docs, quarantine, archived versions,
+# reports, extraction cache) and the ops volume (trace JSON lines, eval results) survive pod
+# restarts because they live on PersistentVolumeClaims, not in container filesystems.
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: datalake-pvc
+  namespace: rahbar
+spec:
+  accessModes: ["ReadWriteOnce"]
+  resources:
+    requests:
+      storage: 3Gi
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: ops-pvc
+  namespace: rahbar
+spec:
+  accessModes: ["ReadWriteOnce"]   # single-node minikube: every pod mounting it is on one node
+  resources:
+    requests:
+      storage: 1Gi

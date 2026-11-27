@@ -1,0 +1,58 @@
+# A03 A2 rollback demo: restore an archived version (metadata flip, no re-embedding) and pin it
+# so the next sync does not supersede it again. Undo with k8s/jobs/unpin-job.yaml.
+# Runs in the ingestion image under the ingestion ServiceAccount: still the single writer.
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: ingest-restore
+  namespace: rahbar
+spec:
+  backoffLimit: 0
+  parallelism: 1
+  completions: 1
+  template:
+    metadata:
+      labels:
+        app: indexer
+    spec:
+      serviceAccountName: rahbar-indexer
+      automountServiceAccountToken: false
+      restartPolicy: Never
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 1000
+        fsGroup: 1000
+      containers:
+        - name: ingest
+          image: rahbar-indexer:3.0.0
+          imagePullPolicy: IfNotPresent
+          args: ["python", "-m", "pipeline.run"]
+          envFrom:
+            - configMapRef:
+                name: rahbar-config
+          env:
+            - name: INGEST_MODE
+              value: "restore"
+            - name: INGEST_TARGET
+              value: "fee-structure@2026-27"
+          resources:
+            requests:
+              cpu: "500m"
+              memory: "768Mi"   # F5: ingest peak 1085Mi during OCR
+            limits:
+              cpu: "2"
+              memory: "2Gi"
+          securityContext:
+            readOnlyRootFilesystem: true
+            allowPrivilegeEscalation: false
+            capabilities:
+              drop: ["ALL"]
+          volumeMounts:
+            - { name: data, mountPath: /data }
+            - { name: tmp, mountPath: /tmp }
+      volumes:
+        - name: data
+          persistentVolumeClaim:
+            claimName: datalake-pvc
+        - name: tmp
+          emptyDir: {}

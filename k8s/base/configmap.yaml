@@ -1,3 +1,6 @@
+# Shared configuration, read by the API (envFrom), the ingestion Job/CronJob and the eval Job.
+# Values that define a *release* (CHROMA_COLLECTION, RELEASE) are overridden in each API
+# Deployment's pod template env, so `kubectl rollout undo` reverts them (A03 F3).
 apiVersion: v1
 kind: ConfigMap
 metadata:
@@ -10,13 +13,27 @@ data:
   RETRIEVER: "chroma"
   CHROMA_HOST: "chroma"
   CHROMA_PORT: "8000"
-  CHROMA_COLLECTION: "rahbar"
+  CHROMA_COLLECTION: "rahbar_v1"
   OLLAMA_URL: "http://host.minikube.internal:11434"
   TOP_K: "5"
+  CANDIDATE_POOL: "2"
+  RERANK: "lexical"
+  # Facts and JSON belong at 0-0.3 (A02 3.4); 0.2 keeps answers stable but not degenerate.
   TEMPERATURE: "0.2"
+  SEED: "42"
   RELEVANCE_FLOOR: "0.35"
   CACHE_THRESHOLD: "0.92"
   REDIS_URL: "redis://redis:6379"
   CHUNK_SIZE: "400"
   CHUNK_OVERLAP: "80"
   LOG_LEVEL: "INFO"
+  # A03 Part A: data lake on the datalake-pvc
+  DATA_DIR: "/data"
+  NEAR_DUP_THRESHOLD: "0.985"
+  MIN_CHARS: "200"
+  MIN_CLEAN_RATIO: "0.85"
+  MIN_TEXT_PAGE_RATIO: "0.5"
+  # A03 D1/F4: traces to stdout and to the ops-pvc
+  TRACE_DIR: "/ops/traces"
+  GUARDRAILS: "true"
+  PROMPT_TEMPLATE: "v1"

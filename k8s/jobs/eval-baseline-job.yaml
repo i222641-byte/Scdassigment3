@@ -1,0 +1,77 @@
+# A03 B (stochasticity) + C1: the baseline suite run twice with fixed seeds; saves
+# /ops/results/baseline.json that later gates compare against. No gate on the baseline itself.
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: eval-baseline
+  namespace: rahbar
+spec:
+  backoffLimit: 0                 # a failed gate must fail the Job, not be retried into a pass
+  template:
+    metadata:
+      labels:
+        app: eval
+    spec:
+      serviceAccountName: rahbar-eval
+      automountServiceAccountToken: false
+      restartPolicy: Never
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 1000
+        fsGroup: 1000
+      containers:
+        - name: eval
+          image: rahbar-eval:3.0.2
+          imagePullPolicy: IfNotPresent
+          args: ["--pairs", "/evaldata/embedding_pairs.jsonl", "--human", "/evaldata/human_labels.jsonl"]
+          env:
+            - name: API_URL
+              value: "http://api"
+            - name: EVAL_LABEL
+              value: "baseline"
+            - name: EVAL_GATE
+              value: "0"
+            - name: EVAL_REPEAT
+              value: "2"
+            - name: SAVE_BASELINE
+              value: "1"
+            - name: GOLDEN
+              value: /evaldata/golden.jsonl
+            - name: GATE_CONFIG
+              value: /config/gate.yaml
+            - name: RESULTS_DIR
+              value: /ops/results
+            - name: BASELINE
+              value: /ops/results/baseline.json
+            - name: OLLAMA_URL
+              valueFrom: { configMapKeyRef: { name: rahbar-config, key: OLLAMA_URL } }
+            - name: EMBED_MODEL
+              valueFrom: { configMapKeyRef: { name: rahbar-config, key: EMBED_MODEL } }
+            - name: SEED
+              valueFrom: { configMapKeyRef: { name: rahbar-config, key: SEED } }
+          resources:
+            requests:
+              cpu: "50m"
+              memory: "64Mi"
+            limits:
+              cpu: "500m"
+              memory: "256Mi"
+          securityContext:
+            readOnlyRootFilesystem: true
+            allowPrivilegeEscalation: false
+            capabilities:
+              drop: ["ALL"]
+          volumeMounts:
+            - { name: ops, mountPath: /ops }
+            - { name: gate, mountPath: /config, readOnly: true }
+            - { name: evaldata, mountPath: /evaldata, readOnly: true }
+      volumes:
+        - name: ops
+          persistentVolumeClaim:
+            claimName: ops-pvc
+        - name: gate
+          configMap:
+            name: rahbar-gate
+        - name: evaldata
+          configMap:
+            name: rahbar-evaldata

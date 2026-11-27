@@ -1,4 +1,4 @@
-# Default deny all ingress/egress in the namespace
+# Deny by default, then allow only the paths the architecture needs (A02 4.7, A03 F2).
 apiVersion: networking.k8s.io/v1
 kind: NetworkPolicy
 metadata:
@@ -6,11 +6,8 @@ metadata:
   namespace: rahbar
 spec:
   podSelector: {}
-  policyTypes:
-    - Ingress
-    - Egress
+  policyTypes: ["Ingress", "Egress"]
 ---
-# Allow DNS for all pods
 apiVersion: networking.k8s.io/v1
 kind: NetworkPolicy
 metadata:
@@ -18,16 +15,18 @@ metadata:
   namespace: rahbar
 spec:
   podSelector: {}
-  policyTypes:
-    - Egress
+  policyTypes: ["Egress"]
   egress:
-    - ports:
-        - port: 53
-          protocol: UDP
-        - port: 53
-          protocol: TCP
+    - to:
+        - namespaceSelector: {}
+          podSelector:
+            matchLabels:
+              k8s-app: kube-dns
+      ports:
+        - { port: 53, protocol: UDP }
+        - { port: 53, protocol: TCP }
 ---
-# UI: ingress from anywhere (ingress controller), egress to api
+# ui: from the ingress controller; no egress except DNS (the browser calls /api itself)
 apiVersion: networking.k8s.io/v1
 kind: NetworkPolicy
 metadata:
@@ -35,64 +34,50 @@ metadata:
   namespace: rahbar
 spec:
   podSelector:
-    matchLabels:
-      app: ui
-  policyTypes:
-    - Ingress
-    - Egress
+    matchLabels: { app: ui }
+  policyTypes: ["Ingress"]
   ingress:
-    - {}
-  egress:
-    - to:
-        - podSelector:
-            matchLabels:
-              app: api
-      ports:
-        - port: 8000
+    - from:
+        - namespaceSelector:
+            matchLabels: { kubernetes.io/metadata.name: ingress-nginx }
+      ports: [{ port: 8080 }]
 ---
-# API: ingress from ui and ingress controller; egress to chroma, redis, ollama host
+# query APIs (live and candidate): from ingress, ui and the eval Job; to chroma, redis, Ollama
 apiVersion: networking.k8s.io/v1
 kind: NetworkPolicy
 metadata:
-  name: allow-api
+  name: allow-query-api
   namespace: rahbar
 spec:
   podSelector:
-    matchLabels:
-      app: api
-  policyTypes:
-    - Ingress
-    - Egress
+    matchLabels: { role: query-api }
+  policyTypes: ["Ingress", "Egress"]
   ingress:
     - from:
+        - namespaceSelector:
+            matchLabels: { kubernetes.io/metadata.name: ingress-nginx }
         - podSelector:
-            matchLabels:
-              app: ui
-    - {}  # from ingress controller (not pod-selectable)
+            matchLabels: { app: ui }
+        - podSelector:
+            matchLabels: { app: eval }
+      ports: [{ port: 8000 }]
+    - from:                           # kubectl port-forward for /metrics (F4) arrives via the node
+        - ipBlock: { cidr: 0.0.0.0/0 }
+      ports: [{ port: 8000 }]
   egress:
     - to:
         - podSelector:
-            matchLabels:
-              app: chroma
-      ports:
-        - port: 8000
+            matchLabels: { app: chroma }
+      ports: [{ port: 8000 }]
     - to:
         - podSelector:
-            matchLabels:
-              app: redis
-      ports:
-        - port: 6379
-    - to:
-        - ipBlock:
-            cidr: 0.0.0.0/0
-            except:
-              - 10.0.0.0/8
-              - 172.16.0.0/12
-              - 192.168.0.0/16
-      ports:
-        - port: 11434  # Ollama on host
+            matchLabels: { app: redis }
+      ports: [{ port: 6379 }]
+    - to:                             # Ollama on the laptop (host.minikube.internal), port only
+        - ipBlock: { cidr: 0.0.0.0/0 }
+      ports: [{ port: 11434 }]
 ---
-# Chroma: ingress from api and indexer only
+# chroma: only the query APIs (read) and the ingestion Job (the single writer)
 apiVersion: networking.k8s.io/v1
 kind: NetworkPolicy
 metadata:
@@ -100,23 +85,16 @@ metadata:
   namespace: rahbar
 spec:
   podSelector:
-    matchLabels:
-      app: chroma
-  policyTypes:
-    - Ingress
+    matchLabels: { app: chroma }
+  policyTypes: ["Ingress"]
   ingress:
     - from:
         - podSelector:
-            matchLabels:
-              app: api
-    - from:
+            matchLabels: { role: query-api }
         - podSelector:
-            matchLabels:
-              app: indexer
-      ports:
-        - port: 8000
+            matchLabels: { app: indexer }
+      ports: [{ port: 8000 }]
 ---
-# Redis: ingress from api only
 apiVersion: networking.k8s.io/v1
 kind: NetworkPolicy
 metadata:
@@ -124,19 +102,15 @@ metadata:
   namespace: rahbar
 spec:
   podSelector:
-    matchLabels:
-      app: redis
-  policyTypes:
-    - Ingress
+    matchLabels: { app: redis }
+  policyTypes: ["Ingress"]
   ingress:
     - from:
         - podSelector:
-            matchLabels:
-              app: api
-      ports:
-        - port: 6379
+            matchLabels: { role: query-api }
+      ports: [{ port: 6379 }]
 ---
-# Indexer: egress to chroma and ollama host
+# ingestion Job: to chroma and Ollama (embeddings) only
 apiVersion: networking.k8s.io/v1
 kind: NetworkPolicy
 metadata:
@@ -144,23 +118,32 @@ metadata:
   namespace: rahbar
 spec:
   podSelector:
-    matchLabels:
-      app: indexer
-  policyTypes:
-    - Egress
+    matchLabels: { app: indexer }
+  policyTypes: ["Egress"]
   egress:
     - to:
         - podSelector:
-            matchLabels:
-              app: chroma
-      ports:
-        - port: 8000
+            matchLabels: { app: chroma }
+      ports: [{ port: 8000 }]
     - to:
-        - ipBlock:
-            cidr: 0.0.0.0/0
-            except:
-              - 10.0.0.0/8
-              - 172.16.0.0/12
-              - 192.168.0.0/16
-      ports:
-        - port: 11434
+        - ipBlock: { cidr: 0.0.0.0/0 }
+      ports: [{ port: 11434 }]
+---
+# eval Job: to the query APIs (black-box testing) and Ollama (judge, embeddings); never chroma
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: allow-eval
+  namespace: rahbar
+spec:
+  podSelector:
+    matchLabels: { app: eval }
+  policyTypes: ["Egress"]
+  egress:
+    - to:
+        - podSelector:
+            matchLabels: { role: query-api }
+      ports: [{ port: 8000 }]
+    - to:
+        - ipBlock: { cidr: 0.0.0.0/0 }
+      ports: [{ port: 11434 }]

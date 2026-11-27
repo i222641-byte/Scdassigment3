@@ -31,13 +31,13 @@ spec:
               value: "FALSE"
             - name: CHROMA_PORT
               value: "8000"
-          resources:
-            requests:
-              cpu: "250m"
-              memory: "512Mi"
+          resources:            # F5: measured ~960Mi steady with 3 collections; OOMKilled
+            requests:           # (exit 137) at a 2Gi limit while the third was loading during
+              cpu: "250m"       # live queries -> request 1Gi, limit 3Gi
+              memory: "1Gi"
             limits:
               cpu: "1"
-              memory: "2Gi"
+              memory: "3Gi"
           readinessProbe:
             httpGet:
               path: /api/v2/heartbeat

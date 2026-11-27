@@ -1,10 +1,17 @@
+# The live query API (A03 F1). RELEASE and CHROMA_COLLECTION are set HERE, in the pod
+# template, not only in the ConfigMap: a release changes the pod template, Kubernetes records
+# a new ReplicaSet revision, and `kubectl rollout undo` brings back the previous collection
+# (A03 F3). maxUnavailable: 0 keeps 3 ready pods serving during every rollout.
 apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: api
   namespace: rahbar
+  annotations:
+    kubernetes.io/change-cause: "baseline release v1: collection rahbar_v1 (chunk 400/80)"
 spec:
   replicas: 3
+  revisionHistoryLimit: 10
   selector:
     matchLabels:
       app: api
@@ -17,6 +24,7 @@ spec:
     metadata:
       labels:
         app: api
+        role: query-api
     spec:
       serviceAccountName: rahbar-api
       automountServiceAccountToken: false
@@ -24,9 +32,10 @@ spec:
       securityContext:
         runAsNonRoot: true
         runAsUser: 1000
+        fsGroup: 1000
       containers:
         - name: api
-          image: rahbar-api:latest
+          image: rahbar-api:3.0.2
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 8000
@@ -34,37 +43,36 @@ spec:
             - configMapRef:
                 name: rahbar-config
           env:
+            - name: RELEASE
+              value: "v1-c400"
+            - name: CHROMA_COLLECTION
+              value: "rahbar_v1"
             - name: LLM_API_KEY
               valueFrom:
                 secretKeyRef:
                   name: rahbar-secret
                   key: LLM_API_KEY
                   optional: true
-          resources:
-            requests:
-              cpu: "250m"
-              memory: "256Mi"
+          resources:            # F5: kubectl top shows ~400Mi per pod (chromadb client + numpy)
+            requests:           # and ~5m CPU idle, bursts while serializing prompts
+              cpu: "100m"
+              memory: "448Mi"
             limits:
               cpu: "1"
-              memory: "512Mi"
+              memory: "768Mi"
           startupProbe:
-            httpGet:
-              path: /healthz
-              port: 8000
+            httpGet: { path: /healthz, port: 8000 }
             failureThreshold: 30
             periodSeconds: 2
           livenessProbe:
-            httpGet:
-              path: /healthz
-              port: 8000
+            httpGet: { path: /healthz, port: 8000 }
             periodSeconds: 20
             failureThreshold: 3
           readinessProbe:
-            httpGet:
-              path: /readyz
-              port: 8000
+            httpGet: { path: /readyz, port: 8000 }
             periodSeconds: 10
             failureThreshold: 3
+            timeoutSeconds: 5
           lifecycle:
             preStop:
               exec:
@@ -73,5 +81,15 @@ spec:
             readOnlyRootFilesystem: true
             allowPrivilegeEscalation: false
             capabilities:
-              drop:
-                - ALL
+              drop: ["ALL"]
+          volumeMounts:
+            - name: ops
+              mountPath: /ops
+            - name: tmp
+              mountPath: /tmp
+      volumes:
+        - name: ops
+          persistentVolumeClaim:
+            claimName: ops-pvc
+        - name: tmp
+          emptyDir: {}

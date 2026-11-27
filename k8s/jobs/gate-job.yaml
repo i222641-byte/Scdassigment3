@@ -1,0 +1,46 @@
+# A03 C2/F2: re-apply the release gate (thresholds from the rahbar-gate ConfigMap) to the latest
+# candidate result on the ops volume. Used to show that editing a threshold in the ConfigMap
+# changes the outcome with the same image: no rebuild, no re-run of the suite.
+#   kubectl edit configmap rahbar-gate -n rahbar      # change e.g. max_p95_latency_ms
+#   scripts/k8s_job.sh k8s/jobs/gate-job.yaml         # Complete = PASS, Failed = FAIL
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: gate
+  namespace: rahbar
+spec:
+  backoffLimit: 0
+  template:
+    metadata:
+      labels:
+        app: eval
+    spec:
+      serviceAccountName: rahbar-eval
+      automountServiceAccountToken: false
+      restartPolicy: Never
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 1000
+        fsGroup: 1000
+      containers:
+        - name: gate
+          image: rahbar-eval:3.0.2
+          imagePullPolicy: IfNotPresent
+          command: ["python", "gate.py"]
+          args: ["--candidate", "/ops/results/latest_candidate.json",
+                 "--baseline", "/ops/results/baseline.json", "--config", "/config/gate.yaml"]
+          resources:
+            requests: { cpu: "20m", memory: "32Mi" }
+            limits: { cpu: "200m", memory: "128Mi" }
+          securityContext:
+            readOnlyRootFilesystem: true
+            allowPrivilegeEscalation: false
+            capabilities: { drop: ["ALL"] }
+          volumeMounts:
+            - { name: ops, mountPath: /ops, readOnly: true }
+            - { name: gate, mountPath: /config, readOnly: true }
+      volumes:
+        - name: ops
+          persistentVolumeClaim: { claimName: ops-pvc }
+        - name: gate
+          configMap: { name: rahbar-gate }

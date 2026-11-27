@@ -19,7 +19,7 @@ spec:
         runAsUser: 101
       containers:
         - name: ui
-          image: rahbar-ui:latest
+          image: rahbar-ui:3.0.0
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 8080

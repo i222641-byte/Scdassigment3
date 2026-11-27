@@ -1,0 +1,35 @@
+# Helper pod for moving files in and out of the volumes with kubectl cp / kubectl exec:
+# loading a batch into the landing zone, deleting a document (A2), copying reports, traces and
+# eval results back into the repository. It has no network access (default-deny) and never
+# talks to Chroma: the ingestion Job remains the only writer to the vector store.
+apiVersion: v1
+kind: Pod
+metadata:
+  name: datalake-shell
+  namespace: rahbar
+  labels:
+    app: datalake-shell
+spec:
+  automountServiceAccountToken: false
+  securityContext:
+    runAsNonRoot: true
+    runAsUser: 1000
+    fsGroup: 1000
+  containers:
+    - name: shell
+      image: busybox:1.36
+      command: ["sh", "-c", "mkdir -p /data/corpus /ops/traces /ops/results && sleep 2147483647"]
+      resources:
+        requests: { cpu: "10m", memory: "16Mi" }
+        limits: { cpu: "100m", memory: "64Mi" }
+      securityContext:
+        allowPrivilegeEscalation: false
+        capabilities: { drop: ["ALL"] }
+      volumeMounts:
+        - { name: data, mountPath: /data }
+        - { name: ops, mountPath: /ops }
+  volumes:
+    - name: data
+      persistentVolumeClaim: { claimName: datalake-pvc }
+    - name: ops
+      persistentVolumeClaim: { claimName: ops-pvc }

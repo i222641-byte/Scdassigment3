@@ -1,0 +1,18 @@
+# A03 C2/F2: release-gate thresholds. The eval Job mounts this at /config/gate.yaml.
+# Edit and re-apply (or `kubectl edit cm rahbar-gate -n rahbar`) and the next eval Job uses the
+# new thresholds: no image rebuild. Justifications: docs/RAGOPS.md, "Release gate".
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: rahbar-gate
+  namespace: rahbar
+data:
+  gate.yaml: |
+    max_recall5_drop_points: 2
+    min_recall5_absolute: 0.60
+    min_faithfulness: 0.80
+    max_p95_latency_ms: 45000
+    abstention_not_below_baseline: true
+    min_abstention_correctness: 1.0
+    min_citation_validity: 0.70
+    max_false_abstention_rate: 0.40
