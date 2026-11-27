@@ -1,0 +1,27 @@
+{
+  "run_id": "20261127T004124Z",
+  "mode": "restore",
+  "target": "fee-structure@2026-27",
+  "status_before": {
+    "2026-27": "archived",
+    "2027-28": "active"
+  },
+  "status_after": {
+    "2026-27": "active",
+    "2027-28": "archived"
+  },
+  "chunks": {
+    "chunks_embedded": 0,
+    "chunks_added": 0,
+    "chunks_deleted_changed": 0,
+    "chunks_deleted_orphans": 0,
+    "chunks_metadata_updated": 6,
+    "chunks_unchanged": 489,
+    "collection_total_after": 495,
+    "index_version": "20261127T004124Z"
+  },
+  "counts_for_doc": {
+    "2026-27:active": 3,
+    "2027-28:archived": 3
+  }
+}

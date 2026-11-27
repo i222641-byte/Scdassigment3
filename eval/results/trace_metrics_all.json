@@ -1,0 +1,88 @@
+{
+  "records": 372,
+  "window": {
+    "first": "2026-11-26T16:50:08.708+00:00",
+    "last": "2026-11-27T01:06:01.780+00:00"
+  },
+  "top1_similarity": {
+    "n": 370,
+    "min": 0.5562,
+    "p10": 0.6478,
+    "p25": 0.6731,
+    "median": 0.7239,
+    "p75": 0.7741,
+    "p90": 0.8073,
+    "max": 0.878,
+    "histogram": {
+      "0.55-0.60": 20,
+      "0.60-0.65": 25,
+      "0.65-0.70": 89,
+      "0.70-0.75": 104,
+      "0.75-0.80": 90,
+      "0.80-0.85": 32,
+      "0.85-0.90": 10
+    }
+  },
+  "abstention_rate": 0.3333,
+  "abstentions": 124,
+  "cache": {
+    "bypass": 368,
+    "miss": 2,
+    "hit": 2
+  },
+  "cache_hit_rate": 0.5,
+  "p95_latency_ms_by_stage": {
+    "cache": 52.8605,
+    "embed": 133.6695,
+    "generate": 47096.7585,
+    "guardrail": 2.4175,
+    "rerank": 2.8365,
+    "retrieve": 77.081,
+    "rewrite": 0.2455,
+    "total": 47177.043,
+    "validate": 0.76
+  },
+  "p50_latency_ms_by_stage": {
+    "cache": 37.345,
+    "embed": 45.225,
+    "generate": 24755.49,
+    "guardrail": 1.07,
+    "rerank": 1.165,
+    "retrieve": 14.185,
+    "rewrite": 0.02,
+    "total": 24837.36,
+    "validate": 0.04
+  },
+  "injection_attempts_flagged": 15,
+  "injection_by_stage": {
+    "query": 10,
+    "retrieval": 5
+  },
+  "injection_trace_ids": [
+    "269574d1ad4c46dea419bc4ab37083fb",
+    "3390879dd28e420f9ebcdd796bf1bd54",
+    "3b777d377b034c63b99bcb8a677e9f2f",
+    "4c36faa82dd24fa6ad26ac3cd51ca558",
+    "64f0bbda12fd41ccb51c0b955b7d2018",
+    "6b1c234b9084454d9a47a04c2abf7c2c",
+    "7cb279b9ecad419795c5b9e013262bee",
+    "7f2381db79154fd1aba719d91eeb12fa",
+    "85af4a66c4fd4013b820365128b0becf",
+    "8f89aef767dc4f1483979206c49461bd",
+    "c2ea2f92a37f472a848a12ca4284dcf0",
+    "cb0667e3f03645908cb81105a4c03a63",
+    "fb2fe39e6047431e872e2ad2c8ffe2ee"
+  ],
+  "grounding_suppressions": 16,
+  "by_release_collection": {
+    "v1-c400 | rahbar_v1 | nomic-embed-text@0a109f422b47": 223,
+    "v2-c250 | rahbar_v2_c250 | nomic-embed-text@0a109f422b47": 54,
+    "v3-c60-bad | rahbar_v3_c60 | nomic-embed-text@0a109f422b47": 1,
+    "v3-c60-candidate | rahbar_v3_c60 | nomic-embed-text@0a109f422b47": 61,
+    "v2-c250-candidate | rahbar_v2_c250 | nomic-embed-text@0a109f422b47": 33
+  },
+  "filter": {
+    "since": null,
+    "until": null
+  }
+}

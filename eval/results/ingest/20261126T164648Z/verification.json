@@ -1,0 +1,267 @@
+{
+  "run_id": "20261126T164648Z",
+  "verified": [
+    {
+      "file": "batch_a/annual-report-2019-20.pdf",
+      "doc_id": "annual-report-2019-20",
+      "doc_version": "2019-20",
+      "sha256": "4d1961e340b13273bb039805ab5fd5e2c7bd0144a5bd5870f2ce4da13becd650",
+      "checks": {
+        "quality": {
+          "result": "pass",
+          "reason": "49207 chars, 33/33 pages with text, clean ratio 1.00"
+        },
+        "completeness": {
+          "result": "pass",
+          "reason": "source, title, version 2019-20, 33 page(s); not truncated"
+        },
+        "uniqueness": {
+          "result": "pass",
+          "reason": "no exact or near duplicate (threshold 0.985)"
+        },
+        "recency": {
+          "result": "pass",
+          "reason": "only version of annual-report-2019-20"
+        }
+      },
+      "disposition": "indexed",
+      "detail": {
+        "change": "new",
+        "nearest_similarity": 0.0
+      }
+    },
+    {
+      "file": "batch_a/annual-report-2023-24.pdf",
+      "doc_id": "annual-report-2023-24",
+      "doc_version": "2023-24",
+      "sha256": "3c9d89e84af24df4b939f10e32c620a3877b276acea1db52f1aae4098e5c057a",
+      "checks": {
+        "quality": {
+          "result": "pass",
+          "reason": "197204 chars, 85/85 pages with text, clean ratio 1.00"
+        },
+        "completeness": {
+          "result": "pass",
+          "reason": "source, title, version 2023-24, 85 page(s); not truncated"
+        },
+        "uniqueness": {
+          "result": "pass",
+          "reason": "no exact or near duplicate (threshold 0.985); nearest other document batch_a/annual-report-2019-20.pdf at 0.9213"
+        },
+        "recency": {
+          "result": "pass",
+          "reason": "only version of annual-report-2023-24"
+        }
+      },
+      "disposition": "indexed",
+      "detail": {
+        "change": "new",
+        "nearest_similarity": 0.9213
+      }
+    },
+    {
+      "file": "batch_a/faculty-entrepreneurship-and-technical-start-ups-policy.pdf",
+      "doc_id": "faculty-entrepreneurship-policy",
+      "doc_version": "2022-05",
+      "sha256": "c2d5c7648d1593daf34d5c0596ede476e8984b0551830cc1690017e6e22f1359",
+      "checks": {
+        "quality": {
+          "result": "pass",
+          "reason": "11845 chars, 8/8 pages with text, clean ratio 1.00, 8 page(s) recovered by OCR"
+        },
+        "completeness": {
+          "result": "pass",
+          "reason": "source, title, version 2022-05, 8 page(s); not truncated"
+        },
+        "uniqueness": {
+          "result": "pass",
+          "reason": "no exact or near duplicate (threshold 0.985); nearest other document batch_a/annual-report-2019-20.pdf at 0.7691"
+        },
+        "recency": {
+          "result": "pass",
+          "reason": "only version of faculty-entrepreneurship-policy"
+        }
+      },
+      "disposition": "indexed",
+      "detail": {
+        "change": "new",
+        "nearest_similarity": 0.7691
+      }
+    },
+    {
+      "file": "batch_a/fee-structure-page.html",
+      "doc_id": "fee-structure",
+      "doc_version": "2026-27",
+      "sha256": "ec8872ae77cac7e96e20e6979933f36b00aaeb0ab3f668a2116e521c655e7b90",
+      "checks": {
+        "quality": {
+          "result": "pass",
+          "reason": "3619 chars, 1/1 pages with text, clean ratio 1.00"
+        },
+        "completeness": {
+          "result": "pass",
+          "reason": "source, title, version 2026-27, 1 page(s); not truncated"
+        },
+        "uniqueness": {
+          "result": "pass",
+          "reason": "no exact or near duplicate (threshold 0.985); nearest other document batch_a/annual-report-2019-20.pdf at 0.7598"
+        },
+        "recency": {
+          "result": "pass",
+          "reason": "only version of fee-structure"
+        }
+      },
+      "disposition": "indexed",
+      "detail": {
+        "change": "new",
+        "nearest_similarity": 0.7598
+      }
+    },
+    {
+      "file": "batch_a/grading-page.html",
+      "doc_id": "grading-policy",
+      "doc_version": "2026",
+      "sha256": "66a995b4d8474e914d37bfa14755a5361f47327d5a7314f9b7ec15d9b6176e6e",
+      "checks": {
+        "quality": {
+          "result": "pass",
+          "reason": "4664 chars, 1/1 pages with text, clean ratio 1.00"
+        },
+        "completeness": {
+          "result": "pass",
+          "reason": "source, title, version 2026, 1 page(s); not truncated"
+        },
+        "uniqueness": {
+          "result": "pass",
+          "reason": "no exact or near duplicate (threshold 0.985); nearest other document batch_a/annual-report-2023-24.pdf at 0.7209"
+        },
+        "recency": {
+          "result": "pass",
+          "reason": "only version of grading-policy"
+        }
+      },
+      "disposition": "indexed",
+      "detail": {
+        "change": "new",
+        "nearest_similarity": 0.7209
+      }
+    },
+    {
+      "file": "batch_a/prospectus-2026-academic-rules-and-regulations.pdf",
+      "doc_id": "prospectus-academic-rules",
+      "doc_version": "2026",
+      "sha256": "a7e7f6896a59eb9413c9e8826e6c4c018ebe52045d10cebfcba92ded10a3174a",
+      "checks": {
+        "quality": {
+          "result": "pass",
+          "reason": "20952 chars, 5/5 pages with text, clean ratio 1.00"
+        },
+        "completeness": {
+          "result": "pass",
+          "reason": "source, title, version 2026, 5 page(s); not truncated"
+        },
+        "uniqueness": {
+          "result": "pass",
+          "reason": "no exact or near duplicate (threshold 0.985); nearest other document batch_a/grading-page.html at 0.8982"
+        },
+        "recency": {
+          "result": "pass",
+          "reason": "only version of prospectus-academic-rules"
+        }
+      },
+      "disposition": "indexed",
+      "detail": {
+        "change": "new",
+        "nearest_similarity": 0.8982
+      }
+    },
+    {
+      "file": "batch_a/student-handbook-jun-2026.pdf",
+      "doc_id": "student-handbook",
+      "doc_version": "2026-06",
+      "sha256": "717eb4b8d37e50185ffe952735c08ef19edd16074d547f10ebd22cf23da67c4d",
+      "checks": {
+        "quality": {
+          "result": "pass",
+          "reason": "141478 chars, 62/64 pages with text, clean ratio 1.00, 2 page(s) recovered by OCR"
+        },
+        "completeness": {
+          "result": "pass",
+          "reason": "source, title, version 2026-06, 64 page(s); not truncated"
+        },
+        "uniqueness": {
+          "result": "pass",
+          "reason": "no exact or near duplicate (threshold 0.985); nearest other document batch_a/annual-report-2023-24.pdf at 0.8872"
+        },
+        "recency": {
+          "result": "pass",
+          "reason": "only version of student-handbook"
+        }
+      },
+      "disposition": "indexed",
+      "detail": {
+        "change": "new",
+        "nearest_similarity": 0.8872
+      }
+    },
+    {
+      "file": "batch_a/undergraduate-academic-rules-aug-2023.pdf",
+      "doc_id": "ug-academic-rules",
+      "doc_version": "2023-08",
+      "sha256": "cddfe1f5e9770132e27d686abd1c2e6742ef4732f0c2f431ed514bc1691d2004",
+      "checks": {
+        "quality": {
+          "result": "pass",
+          "reason": "31946 chars, 25/26 pages with text, clean ratio 1.00, 23 page(s) recovered by OCR"
+        },
+        "completeness": {
+          "result": "pass",
+          "reason": "source, title, version 2023-08, 26 page(s); not truncated"
+        },
+        "uniqueness": {
+          "result": "pass",
+          "reason": "no exact or near duplicate (threshold 0.985); nearest other document batch_a/prospectus-2026-academic-rules-and-regulations.pdf at 0.9529"
+        },
+        "recency": {
+          "result": "fail",
+          "reason": "superseded: newer version 2026-06 of ug-academic-rules exists"
+        }
+      },
+      "disposition": "archived",
+      "detail": {
+        "change": "new",
+        "nearest_similarity": 0.9529
+      }
+    },
+    {
+      "file": "batch_a/academic-rules-handbook-jun-2026.pdf",
+      "doc_id": "ug-academic-rules",
+      "doc_version": "2026-06",
+      "sha256": "4cfee3e191b84aeb9168f17656c7642212ff52b90f2780d028b33c154aa74b62",
+      "checks": {
+        "quality": {
+          "result": "pass",
+          "reason": "94704 chars, 54/58 pages with text, clean ratio 1.00, 1 page(s) recovered by OCR"
+        },
+        "completeness": {
+          "result": "pass",
+          "reason": "source, title, version 2026-06, 58 page(s); not truncated"
+        },
+        "uniqueness": {
+          "result": "pass",
+          "reason": "no exact or near duplicate (threshold 0.985); nearest other document batch_a/student-handbook-jun-2026.pdf at 0.9411"
+        },
+        "recency": {
+          "result": "pass",
+          "reason": "newest version of ug-academic-rules; supersedes 2023-08"
+        }
+      },
+      "disposition": "indexed",
+      "detail": {
+        "change": "new",
+        "nearest_similarity": 0.9411
+      }
+    }
+  ],
+  "unchanged_skipped": []
+}

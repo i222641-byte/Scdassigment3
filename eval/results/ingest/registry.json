@@ -1,0 +1,349 @@
+{
+ "docs": {
+  "annual-report-2019-20": {
+   "versions": {
+    "2019-20": {
+     "file": "batch_a/annual-report-2019-20.pdf",
+     "sha256": "4d1961e340b13273bb039805ab5fd5e2c7bd0144a5bd5870f2ce4da13becd650",
+     "text_sha": "6bf96729734d8eefc29831107e9b7dabdf60290ef8c8ca7361eaf038562515d8",
+     "status": "active",
+     "title": "Annual Report 2019-20",
+     "date": "2020-06-30",
+     "source": "https://nu.edu.pk/public/downloads/AnnualReportForm/Annual%20Report%202019-20.pdf",
+     "batch": "batch_a",
+     "lake_path": "lake/docs/annual-report-2019-20/2019-20/annual-report-2019-20.pdf",
+     "verified_run": "20261126T164648Z",
+     "pages": 33
+    }
+   },
+   "pinned": null
+  },
+  "annual-report-2023-24": {
+   "versions": {
+    "2023-24": {
+     "file": "batch_a/annual-report-2023-24.pdf",
+     "sha256": "3c9d89e84af24df4b939f10e32c620a3877b276acea1db52f1aae4098e5c057a",
+     "text_sha": "3f41786f7e2296534cdd4a575a5108d8e9ee50e12b782230f7028d46a2d24651",
+     "status": "active",
+     "title": "Annual Report 2023-24",
+     "date": "2024-06-30",
+     "source": "https://nu.edu.pk/public/downloads/AnnualReportForm/Annual%20Report%202023-24.pdf",
+     "batch": "batch_a",
+     "lake_path": "lake/docs/annual-report-2023-24/2023-24/annual-report-2023-24.pdf",
+     "verified_run": "20261126T164648Z",
+     "pages": 85
+    }
+   },
+   "pinned": null
+  },
+  "faculty-entrepreneurship-policy": {
+   "versions": {
+    "2022-05": {
+     "file": "batch_a/faculty-entrepreneurship-and-technical-start-ups-policy.pdf",
+     "sha256": "c2d5c7648d1593daf34d5c0596ede476e8984b0551830cc1690017e6e22f1359",
+     "text_sha": "2b92b0370e4b15cd6acf9f9edc6383d4b1fbc2f84e962b3b8e47fdece390d004",
+     "status": "active",
+     "title": "Faculty Entrepreneurship and Technical Start-ups Policy",
+     "date": "2022-05-30",
+     "source": "https://nu.edu.pk/OricResources/ResearchPolicies/27.pdf?20220530",
+     "batch": "batch_a",
+     "lake_path": "lake/docs/faculty-entrepreneurship-policy/2022-05/faculty-entrepreneurship-and-technical-start-ups-policy.pdf",
+     "verified_run": "20261126T164648Z",
+     "pages": 8
+    }
+   },
+   "pinned": null
+  },
+  "fee-structure": {
+   "versions": {
+    "2026-27": {
+     "file": "batch_a/fee-structure-page.html",
+     "sha256": "ec8872ae77cac7e96e20e6979933f36b00aaeb0ab3f668a2116e521c655e7b90",
+     "text_sha": "5abb6c57aaf50bba816cec8a75768a27f6396a0b961631bd70fbc7a50588df8e",
+     "status": "archived",
+     "title": "Fee Structure page",
+     "date": "2026-08-01",
+     "source": "https://www.nu.edu.pk/Admissions/FeeStructure",
+     "batch": "batch_a",
+     "lake_path": "lake/docs/fee-structure/2026-27/fee-structure-page.html",
+     "verified_run": "20261126T164648Z",
+     "pages": 1,
+     "archived_path": "archive/fee-structure/2026-27/fee-structure-page.html"
+    },
+    "2027-28": {
+     "file": "batch_b/fee-structure-2027-28.html",
+     "sha256": "d4aa436eb7864bf2b86eb93d76b9d1b46ff4db729745738d26a0a4d814ba420d",
+     "text_sha": "9887f483ad984e51ddd82c38098b8aa4cb0351872164fb2386cb4a8fd3b97758",
+     "status": "active",
+     "title": "Fee Structure page (2027-28)",
+     "date": "2027-08-01",
+     "source": "own (Batch B newer version of the nu.edu.pk fee page)",
+     "batch": "batch_b",
+     "lake_path": "lake/docs/fee-structure/2027-28/fee-structure-2027-28.html",
+     "verified_run": "20261127T003938Z",
+     "pages": 1
+    }
+   },
+   "pinned": null
+  },
+  "grading-policy": {
+   "versions": {
+    "2026": {
+     "file": "batch_a/grading-page.html",
+     "sha256": "66a995b4d8474e914d37bfa14755a5361f47327d5a7314f9b7ec15d9b6176e6e",
+     "text_sha": "14f2bf6927e7df989d771500dd1ffd9b6ee312df9b1ea9f2d9a25ce61ebc0e7f",
+     "status": "active",
+     "title": "Grading page",
+     "date": "2026-01-01",
+     "source": "https://www.nu.edu.pk/Student/Grading",
+     "batch": "batch_a",
+     "lake_path": "lake/docs/grading-policy/2026/grading-page.html",
+     "verified_run": "20261126T164648Z",
+     "pages": 1
+    }
+   },
+   "pinned": null
+  },
+  "prospectus-academic-rules": {
+   "versions": {
+    "2026": {
+     "file": "batch_a/prospectus-2026-academic-rules-and-regulations.pdf",
+     "sha256": "a7e7f6896a59eb9413c9e8826e6c4c018ebe52045d10cebfcba92ded10a3174a",
+     "text_sha": "6ab7c4f6701e46df00f18fa14639eac4d8d03b92c9ed4d155dc6700a0a1c863f",
+     "status": "active",
+     "title": "Prospectus 2026 - Academic Rules and Regulations",
+     "date": "2026-01-01",
+     "source": "https://nu.edu.pk/Admissions/ProspectusUpload/Academic%20Rules%20and%20Regulations.pdf",
+     "batch": "batch_a",
+     "lake_path": "lake/docs/prospectus-academic-rules/2026/prospectus-2026-academic-rules-and-regulations.pdf",
+     "verified_run": "20261126T164648Z",
+     "pages": 5
+    }
+   },
+   "pinned": null
+  },
+  "student-handbook": {
+   "versions": {
+    "2026-06": {
+     "file": "batch_a/student-handbook-jun-2026.pdf",
+     "sha256": "717eb4b8d37e50185ffe952735c08ef19edd16074d547f10ebd22cf23da67c4d",
+     "text_sha": "6a952bd74fba9f7ce99e15542ec41f66cbfa1f582fa4dc1bc1680e745d85eae6",
+     "status": "active",
+     "title": "Student Handbook (Jun 2026)",
+     "date": "2026-06-01",
+     "source": "https://nu.edu.pk/public/downloads/Student_Handbook_2026.pdf",
+     "batch": "batch_a",
+     "lake_path": "lake/docs/student-handbook/2026-06/student-handbook-jun-2026.pdf",
+     "verified_run": "20261126T164648Z",
+     "pages": 64
+    }
+   },
+   "pinned": null
+  },
+  "ug-academic-rules": {
+   "versions": {
+    "2023-08": {
+     "file": "batch_a/undergraduate-academic-rules-aug-2023.pdf",
+     "sha256": "cddfe1f5e9770132e27d686abd1c2e6742ef4732f0c2f431ed514bc1691d2004",
+     "text_sha": "b4dcbcad850f16d95c8eb782afb4ac007d7cc7bd448b5392b85d65113f67e0a7",
+     "status": "archived",
+     "title": "Undergraduate Academic Rules (Aug 2023)",
+     "date": "2023-08-01",
+     "source": "http://nu.edu.pk/public/downloads/Academic-Rules-Undergrad-Aug-2023.pdf",
+     "batch": "batch_a",
+     "lake_path": "lake/docs/ug-academic-rules/2023-08/undergraduate-academic-rules-aug-2023.pdf",
+     "verified_run": "20261126T164648Z",
+     "pages": 26,
+     "archived_path": "archive/ug-academic-rules/2023-08/undergraduate-academic-rules-aug-2023.pdf"
+    },
+    "2026-06": {
+     "file": "batch_a/academic-rules-handbook-jun-2026.pdf",
+     "sha256": "4cfee3e191b84aeb9168f17656c7642212ff52b90f2780d028b33c154aa74b62",
+     "text_sha": "f460577961107012acaaa672b406a1a7b8a43c9997b9477fa52e510ad40ae066",
+     "status": "active",
+     "title": "Academic Rules Handbook (Jun 2026)",
+     "date": "2026-06-01",
+     "source": "https://nu.edu.pk/public/downloads/Academic_Rules_Handbook_2026.pdf",
+     "batch": "batch_a",
+     "lake_path": "lake/docs/ug-academic-rules/2026-06/academic-rules-handbook-jun-2026.pdf",
+     "verified_run": "20261126T164648Z",
+     "pages": 58
+    }
+   },
+   "pinned": null
+  },
+  "career-fair-2026": {
+   "versions": {
+    "2026-11": {
+     "file": "batch_b/career-fair-2026-notice.md",
+     "sha256": "18928d898251dd783289311e090f28027114760e317a2f9dd56a2f57a7bcd7c9",
+     "text_sha": "7736b977a6a0a44776effe034304f86d8621a6fd533259c4961ca24ef4047285",
+     "status": "active",
+     "title": "Islamabad Campus Career Fair 2026 Notice",
+     "date": "2026-11-20",
+     "source": "own (Batch B test document written by the group for Assignment 03)",
+     "batch": "batch_b",
+     "lake_path": "lake/docs/career-fair-2026/2026-11/career-fair-2026-notice.md",
+     "verified_run": "20261127T004038Z",
+     "pages": 1
+    }
+   },
+   "pinned": null
+  },
+  "convocation-2026": {
+   "versions": {
+    "2026-11": {
+     "file": "batch_b/convocation-2026-guidelines.md",
+     "sha256": "28ff7cba95a14fab96e8c49ae51b478b553b8753272fb15181145cd3a40934b7",
+     "text_sha": "befcdd716127406e1866346ededd643a7f5dfeec9868d86b4d44b85c5e5ba714",
+     "status": "deleted",
+     "title": "Convocation 2026 Guidelines for Graduates",
+     "date": "2026-11-18",
+     "source": "own (Batch B test document written by the group for Assignment 03)",
+     "batch": "batch_b",
+     "lake_path": "lake/docs/convocation-2026/2026-11/convocation-2026-guidelines.md",
+     "verified_run": "20261127T003938Z",
+     "pages": 1,
+     "deleted_run": "20261127T004010Z"
+    }
+   },
+   "pinned": null
+  },
+  "student-affairs-circular-attendance": {
+   "versions": {
+    "2026-11": {
+     "file": "batch_b/student-affairs-circular-attendance.md",
+     "sha256": "6da3c3dfa259d143878dd2445864f00c2326a6b61875a2db8e77cefca2a5ea7c",
+     "text_sha": "b598f16a719359ec61d940f86194e62cf8e88d23aaf697c09935123be74c9ca4",
+     "status": "active",
+     "title": "Student Affairs Circular on Attendance Condonation Requests",
+     "date": "2026-11-15",
+     "source": "own (Batch B test document written by the group for Assignment 03; contains a planted prompt injection)",
+     "batch": "batch_b",
+     "lake_path": "lake/docs/student-affairs-circular-attendance/2026-11/student-affairs-circular-attendance.md",
+     "verified_run": "20261127T003938Z",
+     "pages": 1
+    }
+   },
+   "pinned": null
+  }
+ },
+ "quarantine": [
+  {
+   "file": "batch_b/annual-report-2023-24-partial.pdf",
+   "sha256": "1228a440bf343e024725d6c11a03a10da60dc416ad4726216d6ff315ef6905c5",
+   "run_id": "20261127T003938Z",
+   "moved_to": "quarantine/20261127T003938Z/annual-report-2023-24-partial.pdf",
+   "reasons": {
+    "quality": "failed extraction: ExtractionError: pdf unreadable: pdfplumber=PdfminerException: Unexpected EOF; pypdf=PdfStreamError: Stream has ended unexpectedly",
+    "completeness": "missing metadata: page count; truncated: file is 1785159 bytes but the manifest declares 5100456"
+   }
+  },
+  {
+   "file": "batch_b/grading-policy-reformatted.md",
+   "sha256": "55f5ac3dca2781404d2af5099b136c8d78f715fbe9cd32c09f873e9c6e70e9a6",
+   "run_id": "20261127T003938Z",
+   "moved_to": "quarantine/20261127T003938Z/grading-policy-reformatted.md",
+   "reasons": {
+    "uniqueness": "near-duplicate of batch_a/grading-page.html [grading-policy]: doc-embedding cosine 0.9924 >= 0.985"
+   }
+  },
+  {
+   "file": "batch_b/hostel-annex-scan.pdf",
+   "sha256": "c6c3d363f6d8bff05deec79196ed88e8af4b69892f5196562805497f9440b801",
+   "run_id": "20261127T003938Z",
+   "moved_to": "quarantine/20261127T003938Z/hostel-annex-scan.pdf",
+   "reasons": {
+    "quality": "empty extraction: 0 characters (< 200)"
+   }
+  },
+  {
+   "file": "batch_b/makeup-exam-notice.md",
+   "sha256": "ecd199a218989cc4e48ec98d472d96e90c53278d36919b3db2a68ec4598d192f",
+   "run_id": "20261127T003938Z",
+   "moved_to": "quarantine/20261127T003938Z/makeup-exam-notice.md",
+   "reasons": {
+    "completeness": "missing metadata: source, title, date or version"
+   }
+  },
+  {
+   "file": "batch_b/prospectus-academic-rules-copy.pdf",
+   "sha256": "a7e7f6896a59eb9413c9e8826e6c4c018ebe52045d10cebfcba92ded10a3174a",
+   "run_id": "20261127T003938Z",
+   "moved_to": "quarantine/20261127T003938Z/prospectus-academic-rules-copy.pdf",
+   "reasons": {
+    "uniqueness": "exact duplicate (sha256 a7e7f6896a59) of batch_a/prospectus-2026-academic-rules-and-regulations.pdf [prospectus-academic-rules@2026]"
+   }
+  },
+  {
+   "file": "batch_b/scanned-notice-garbled.txt",
+   "sha256": "3887e6f74ec1867ff2f80cea9acfa0e5b69e325cecf44529211c661176ec04a5",
+   "run_id": "20261127T003938Z",
+   "moved_to": "quarantine/20261127T003938Z/scanned-notice-garbled.txt",
+   "reasons": {
+    "quality": "garbled text: clean-char ratio 0.17 (min 0.85), word-like token ratio 0.33 (min 0.50)"
+   }
+  },
+  {
+   "file": "batch_b/student-handbook-2026-mirror.pdf",
+   "sha256": "717eb4b8d37e50185ffe952735c08ef19edd16074d547f10ebd22cf23da67c4d",
+   "run_id": "20261127T003938Z",
+   "moved_to": "quarantine/20261127T003938Z/student-handbook-2026-mirror.pdf",
+   "reasons": {
+    "uniqueness": "exact duplicate (sha256 717eb4b8d37e) of batch_a/student-handbook-jun-2026.pdf [student-handbook@2026-06]"
+   }
+  }
+ ],
+ "runs": [
+  {
+   "run_id": "20261126T164648Z",
+   "collection": "rahbar_v1"
+  },
+  {
+   "run_id": "20261126T164944Z",
+   "collection": "rahbar_v1"
+  },
+  {
+   "run_id": "20261126T180001Z",
+   "collection": "rahbar_v1"
+  },
+  {
+   "run_id": "20261126T181329Z",
+   "collection": "rahbar_v2_c250"
+  },
+  {
+   "run_id": "20261126T181451Z",
+   "collection": "rahbar_v3_c60"
+  },
+  {
+   "run_id": "20261127T000619Z",
+   "collection": "rahbar_v1"
+  },
+  {
+   "run_id": "20261127T003938Z",
+   "collection": "rahbar_v2_c250"
+  },
+  {
+   "run_id": "20261127T004010Z",
+   "collection": "rahbar_v2_c250"
+  },
+  {
+   "run_id": "20261127T004038Z",
+   "collection": "rahbar_v2_c250"
+  },
+  {
+   "run_id": "20261127T004124Z",
+   "restore": "fee-structure@2026-27",
+   "unpin": false
+  },
+  {
+   "run_id": "20261127T004149Z",
+   "restore": "fee-structure",
+   "unpin": true
+  },
+  {
+   "run_id": "20261127T015339Z",
+   "collection": "rahbar_v2_c250"
+  }
+ ]
+}

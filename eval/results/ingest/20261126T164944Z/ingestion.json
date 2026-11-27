@@ -1,0 +1,74 @@
+{
+  "run_id": "20261126T164944Z",
+  "collection": "rahbar_v1",
+  "embed_model": "nomic-embed-text",
+  "embed_digest": "0a109f422b47",
+  "chunk_size": 400,
+  "chunk_overlap": 80,
+  "documents": {
+    "scanned": 9,
+    "unchanged": 9,
+    "new": 0,
+    "changed": 0,
+    "deleted": 0,
+    "indexed": 0,
+    "archived_on_arrival": 0,
+    "superseded_now": 0,
+    "quarantined": 0
+  },
+  "deleted_documents": [],
+  "superseded": [],
+  "chunks": {
+    "chunks_embedded": 0,
+    "chunks_added": 0,
+    "chunks_deleted_changed": 0,
+    "chunks_deleted_orphans": 0,
+    "chunks_metadata_updated": 0,
+    "chunks_unchanged": 358,
+    "collection_total_after": 358,
+    "index_version": "20261126T164648Z"
+  },
+  "counts_by_doc": {
+    "total": 358,
+    "by_doc": {
+      "annual-report-2019-20": 36,
+      "annual-report-2023-24": 124,
+      "faculty-entrepreneurship-policy": 8,
+      "fee-structure": 2,
+      "grading-policy": 2,
+      "prospectus-academic-rules": 13,
+      "student-handbook": 86,
+      "ug-academic-rules": 87
+    },
+    "by_doc_version": {
+      "annual-report-2019-20": {
+        "2019-20:active": 36
+      },
+      "annual-report-2023-24": {
+        "2023-24:active": 124
+      },
+      "faculty-entrepreneurship-policy": {
+        "2022-05:active": 8
+      },
+      "fee-structure": {
+        "2026-27:active": 2
+      },
+      "grading-policy": {
+        "2026:active": 2
+      },
+      "prospectus-academic-rules": {
+        "2026:active": 13
+      },
+      "student-handbook": {
+        "2026-06:active": 86
+      },
+      "ug-academic-rules": {
+        "2023-08:archived": 25,
+        "2026-06:active": 62
+      }
+    },
+    "orphan_doc_ids": [],
+    "deleted_doc_ids_remaining_chunks": {}
+  },
+  "seconds": 0.9
+}

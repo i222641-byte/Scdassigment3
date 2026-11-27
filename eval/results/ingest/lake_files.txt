@@ -1,0 +1,16 @@
+archive/fee-structure/2026-27/fee-structure-page.html
+archive/ug-academic-rules/2023-08/undergraduate-academic-rules-aug-2023.pdf
+quarantine/20261127T003938Z/annual-report-2023-24-partial.pdf
+quarantine/20261127T003938Z/annual-report-2023-24-partial.pdf.reason.json
+quarantine/20261127T003938Z/grading-policy-reformatted.md
+quarantine/20261127T003938Z/grading-policy-reformatted.md.reason.json
+quarantine/20261127T003938Z/hostel-annex-scan.pdf
+quarantine/20261127T003938Z/hostel-annex-scan.pdf.reason.json
+quarantine/20261127T003938Z/makeup-exam-notice.md
+quarantine/20261127T003938Z/makeup-exam-notice.md.reason.json
+quarantine/20261127T003938Z/prospectus-academic-rules-copy.pdf
+quarantine/20261127T003938Z/prospectus-academic-rules-copy.pdf.reason.json
+quarantine/20261127T003938Z/scanned-notice-garbled.txt
+quarantine/20261127T003938Z/scanned-notice-garbled.txt.reason.json
+quarantine/20261127T003938Z/student-handbook-2026-mirror.pdf
+quarantine/20261127T003938Z/student-handbook-2026-mirror.pdf.reason.json

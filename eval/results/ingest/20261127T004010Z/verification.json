@@ -1,0 +1,47 @@
+{
+  "run_id": "20261127T004010Z",
+  "verified": [
+    {
+      "file": "batch_b/career-fair-2026-notice.md",
+      "doc_id": "career-fair-2026",
+      "doc_version": "2026-11",
+      "sha256": "de5460b7b4fa59b3b04c60443b76db729ff1ba3ae4ebd191531b9687c2caf175",
+      "checks": {
+        "quality": {
+          "result": "pass",
+          "reason": "1268 chars, 1/1 pages with text, clean ratio 1.00"
+        },
+        "completeness": {
+          "result": "pass",
+          "reason": "source, title, version 2026-11, 1 page(s); not truncated"
+        },
+        "uniqueness": {
+          "result": "pass",
+          "reason": "no exact or near duplicate (threshold 0.985); nearest other document batch_b/convocation-2026-guidelines.md at 0.8707"
+        },
+        "recency": {
+          "result": "pass",
+          "reason": "only version of career-fair-2026"
+        }
+      },
+      "disposition": "indexed",
+      "detail": {
+        "change": "changed",
+        "nearest_similarity": 0.8707
+      }
+    }
+  ],
+  "unchanged_skipped": [
+    "batch_a/academic-rules-handbook-jun-2026.pdf",
+    "batch_a/annual-report-2019-20.pdf",
+    "batch_a/annual-report-2023-24.pdf",
+    "batch_a/faculty-entrepreneurship-and-technical-start-ups-policy.pdf",
+    "batch_a/fee-structure-page.html",
+    "batch_a/grading-page.html",
+    "batch_a/prospectus-2026-academic-rules-and-regulations.pdf",
+    "batch_a/student-handbook-jun-2026.pdf",
+    "batch_a/undergraduate-academic-rules-aug-2023.pdf",
+    "batch_b/fee-structure-2027-28.html",
+    "batch_b/student-affairs-circular-attendance.md"
+  ]
+}

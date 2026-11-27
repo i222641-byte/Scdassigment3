@@ -1,0 +1,342 @@
+{
+  "run_id": "20261127T003938Z",
+  "verified": [
+    {
+      "file": "batch_b/annual-report-2023-24-partial.pdf",
+      "doc_id": "annual-report-2023-24-partial",
+      "doc_version": "2023-24",
+      "sha256": "1228a440bf343e024725d6c11a03a10da60dc416ad4726216d6ff315ef6905c5",
+      "checks": {
+        "quality": {
+          "result": "fail",
+          "reason": "failed extraction: ExtractionError: pdf unreadable: pdfplumber=PdfminerException: Unexpected EOF; pypdf=PdfStreamError: Stream has ended unexpectedly"
+        },
+        "completeness": {
+          "result": "fail",
+          "reason": "missing metadata: page count; truncated: file is 1785159 bytes but the manifest declares 5100456"
+        },
+        "uniqueness": {
+          "result": "pass",
+          "reason": "no exact or near duplicate (threshold 0.985)"
+        },
+        "recency": {
+          "result": "pass",
+          "reason": "only version of annual-report-2023-24-partial"
+        }
+      },
+      "disposition": "quarantined",
+      "detail": {
+        "change": "new",
+        "nearest_similarity": 0.0,
+        "moved_to": "quarantine/20261127T003938Z/annual-report-2023-24-partial.pdf"
+      }
+    },
+    {
+      "file": "batch_b/career-fair-2026-notice.md",
+      "doc_id": "career-fair-2026",
+      "doc_version": "2026-11",
+      "sha256": "3f1c485a52d13814525deab50f5976060c3f47dc8cf0045a11ed5976fed9de95",
+      "checks": {
+        "quality": {
+          "result": "pass",
+          "reason": "1269 chars, 1/1 pages with text, clean ratio 1.00"
+        },
+        "completeness": {
+          "result": "pass",
+          "reason": "source, title, version 2026-11, 1 page(s); not truncated"
+        },
+        "uniqueness": {
+          "result": "pass",
+          "reason": "no exact or near duplicate (threshold 0.985); nearest other document batch_a/annual-report-2023-24.pdf at 0.7708"
+        },
+        "recency": {
+          "result": "pass",
+          "reason": "only version of career-fair-2026"
+        }
+      },
+      "disposition": "indexed",
+      "detail": {
+        "change": "new",
+        "nearest_similarity": 0.7708
+      }
+    },
+    {
+      "file": "batch_b/convocation-2026-guidelines.md",
+      "doc_id": "convocation-2026",
+      "doc_version": "2026-11",
+      "sha256": "28ff7cba95a14fab96e8c49ae51b478b553b8753272fb15181145cd3a40934b7",
+      "checks": {
+        "quality": {
+          "result": "pass",
+          "reason": "1157 chars, 1/1 pages with text, clean ratio 1.00"
+        },
+        "completeness": {
+          "result": "pass",
+          "reason": "source, title, version 2026-11, 1 page(s); not truncated"
+        },
+        "uniqueness": {
+          "result": "pass",
+          "reason": "no exact or near duplicate (threshold 0.985); nearest other document batch_b/career-fair-2026-notice.md at 0.8704"
+        },
+        "recency": {
+          "result": "pass",
+          "reason": "only version of convocation-2026"
+        }
+      },
+      "disposition": "indexed",
+      "detail": {
+        "change": "new",
+        "nearest_similarity": 0.8704
+      }
+    },
+    {
+      "file": "batch_b/fee-structure-2027-28.html",
+      "doc_id": "fee-structure",
+      "doc_version": "2027-28",
+      "sha256": "d4aa436eb7864bf2b86eb93d76b9d1b46ff4db729745738d26a0a4d814ba420d",
+      "checks": {
+        "quality": {
+          "result": "pass",
+          "reason": "3650 chars, 1/1 pages with text, clean ratio 1.00"
+        },
+        "completeness": {
+          "result": "pass",
+          "reason": "source, title, version 2027-28, 1 page(s); not truncated"
+        },
+        "uniqueness": {
+          "result": "pass",
+          "reason": "no exact or near duplicate (threshold 0.985); nearest other document batch_a/prospectus-2026-academic-rules-and-regulations.pdf at 0.7954"
+        },
+        "recency": {
+          "result": "pass",
+          "reason": "newest version of fee-structure; supersedes 2026-27"
+        }
+      },
+      "disposition": "indexed",
+      "detail": {
+        "change": "new",
+        "nearest_similarity": 0.7954
+      }
+    },
+    {
+      "file": "batch_b/grading-policy-reformatted.md",
+      "doc_id": "grading-policy-reformatted",
+      "doc_version": "2026-11",
+      "sha256": "55f5ac3dca2781404d2af5099b136c8d78f715fbe9cd32c09f873e9c6e70e9a6",
+      "checks": {
+        "quality": {
+          "result": "pass",
+          "reason": "4726 chars, 1/1 pages with text, clean ratio 1.00"
+        },
+        "completeness": {
+          "result": "pass",
+          "reason": "source, title, version 2026-11, 1 page(s); not truncated"
+        },
+        "uniqueness": {
+          "result": "fail",
+          "reason": "near-duplicate of batch_a/grading-page.html [grading-policy]: doc-embedding cosine 0.9924 >= 0.985"
+        },
+        "recency": {
+          "result": "pass",
+          "reason": "only version of grading-policy-reformatted"
+        }
+      },
+      "disposition": "quarantined",
+      "detail": {
+        "change": "new",
+        "nearest_similarity": 0.9924,
+        "moved_to": "quarantine/20261127T003938Z/grading-policy-reformatted.md"
+      }
+    },
+    {
+      "file": "batch_b/hostel-annex-scan.pdf",
+      "doc_id": "hostel-annex",
+      "doc_version": "2026-11",
+      "sha256": "c6c3d363f6d8bff05deec79196ed88e8af4b69892f5196562805497f9440b801",
+      "checks": {
+        "quality": {
+          "result": "fail",
+          "reason": "empty extraction: 0 characters (< 200)"
+        },
+        "completeness": {
+          "result": "pass",
+          "reason": "source, title, version 2026-11, 1 page(s); not truncated"
+        },
+        "uniqueness": {
+          "result": "pass",
+          "reason": "no exact or near duplicate (threshold 0.985)"
+        },
+        "recency": {
+          "result": "pass",
+          "reason": "only version of hostel-annex"
+        }
+      },
+      "disposition": "quarantined",
+      "detail": {
+        "change": "new",
+        "nearest_similarity": 0.0,
+        "moved_to": "quarantine/20261127T003938Z/hostel-annex-scan.pdf"
+      }
+    },
+    {
+      "file": "batch_b/makeup-exam-notice.md",
+      "doc_id": "makeup-exam-notice",
+      "doc_version": "unknown",
+      "sha256": "ecd199a218989cc4e48ec98d472d96e90c53278d36919b3db2a68ec4598d192f",
+      "checks": {
+        "quality": {
+          "result": "pass",
+          "reason": "346 chars, 1/1 pages with text, clean ratio 1.00"
+        },
+        "completeness": {
+          "result": "fail",
+          "reason": "missing metadata: source, title, date or version"
+        },
+        "uniqueness": {
+          "result": "pass",
+          "reason": "no exact or near duplicate (threshold 0.985); nearest other document batch_a/academic-rules-handbook-jun-2026.pdf at 0.7311"
+        },
+        "recency": {
+          "result": "pass",
+          "reason": "only version of makeup-exam-notice"
+        }
+      },
+      "disposition": "quarantined",
+      "detail": {
+        "change": "new",
+        "nearest_similarity": 0.7311,
+        "moved_to": "quarantine/20261127T003938Z/makeup-exam-notice.md"
+      }
+    },
+    {
+      "file": "batch_b/prospectus-academic-rules-copy.pdf",
+      "doc_id": "prospectus-academic-rules-mirror",
+      "doc_version": "2026",
+      "sha256": "a7e7f6896a59eb9413c9e8826e6c4c018ebe52045d10cebfcba92ded10a3174a",
+      "checks": {
+        "quality": {
+          "result": "pass",
+          "reason": "20952 chars, 5/5 pages with text, clean ratio 1.00"
+        },
+        "completeness": {
+          "result": "pass",
+          "reason": "source, title, version 2026, 5 page(s); not truncated"
+        },
+        "uniqueness": {
+          "result": "fail",
+          "reason": "exact duplicate (sha256 a7e7f6896a59) of batch_a/prospectus-2026-academic-rules-and-regulations.pdf [prospectus-academic-rules@2026]"
+        },
+        "recency": {
+          "result": "pass",
+          "reason": "only version of prospectus-academic-rules-mirror"
+        }
+      },
+      "disposition": "quarantined",
+      "detail": {
+        "change": "new",
+        "nearest_similarity": 1.0,
+        "moved_to": "quarantine/20261127T003938Z/prospectus-academic-rules-copy.pdf"
+      }
+    },
+    {
+      "file": "batch_b/scanned-notice-garbled.txt",
+      "doc_id": "scanned-notice",
+      "doc_version": "2026-11",
+      "sha256": "3887e6f74ec1867ff2f80cea9acfa0e5b69e325cecf44529211c661176ec04a5",
+      "checks": {
+        "quality": {
+          "result": "fail",
+          "reason": "garbled text: clean-char ratio 0.17 (min 0.85), word-like token ratio 0.33 (min 0.50)"
+        },
+        "completeness": {
+          "result": "pass",
+          "reason": "source, title, version 2026-11, 1 page(s); not truncated"
+        },
+        "uniqueness": {
+          "result": "pass",
+          "reason": "no exact or near duplicate (threshold 0.985)"
+        },
+        "recency": {
+          "result": "pass",
+          "reason": "only version of scanned-notice"
+        }
+      },
+      "disposition": "quarantined",
+      "detail": {
+        "change": "new",
+        "nearest_similarity": 0.0,
+        "moved_to": "quarantine/20261127T003938Z/scanned-notice-garbled.txt"
+      }
+    },
+    {
+      "file": "batch_b/student-affairs-circular-attendance.md",
+      "doc_id": "student-affairs-circular-attendance",
+      "doc_version": "2026-11",
+      "sha256": "6da3c3dfa259d143878dd2445864f00c2326a6b61875a2db8e77cefca2a5ea7c",
+      "checks": {
+        "quality": {
+          "result": "pass",
+          "reason": "1099 chars, 1/1 pages with text, clean ratio 1.00"
+        },
+        "completeness": {
+          "result": "pass",
+          "reason": "source, title, version 2026-11, 1 page(s); not truncated"
+        },
+        "uniqueness": {
+          "result": "pass",
+          "reason": "no exact or near duplicate (threshold 0.985); nearest other document batch_b/convocation-2026-guidelines.md at 0.8007"
+        },
+        "recency": {
+          "result": "pass",
+          "reason": "only version of student-affairs-circular-attendance"
+        }
+      },
+      "disposition": "indexed",
+      "detail": {
+        "change": "new",
+        "nearest_similarity": 0.8007
+      }
+    },
+    {
+      "file": "batch_b/student-handbook-2026-mirror.pdf",
+      "doc_id": "student-handbook-mirror",
+      "doc_version": "2026-06",
+      "sha256": "717eb4b8d37e50185ffe952735c08ef19edd16074d547f10ebd22cf23da67c4d",
+      "checks": {
+        "quality": {
+          "result": "pass",
+          "reason": "141478 chars, 62/64 pages with text, clean ratio 1.00, 2 page(s) recovered by OCR"
+        },
+        "completeness": {
+          "result": "pass",
+          "reason": "source, title, version 2026-06, 64 page(s); not truncated"
+        },
+        "uniqueness": {
+          "result": "fail",
+          "reason": "exact duplicate (sha256 717eb4b8d37e) of batch_a/student-handbook-jun-2026.pdf [student-handbook@2026-06]"
+        },
+        "recency": {
+          "result": "pass",
+          "reason": "only version of student-handbook-mirror"
+        }
+      },
+      "disposition": "quarantined",
+      "detail": {
+        "change": "new",
+        "nearest_similarity": 1.0,
+        "moved_to": "quarantine/20261127T003938Z/student-handbook-2026-mirror.pdf"
+      }
+    }
+  ],
+  "unchanged_skipped": [
+    "batch_a/academic-rules-handbook-jun-2026.pdf",
+    "batch_a/annual-report-2019-20.pdf",
+    "batch_a/annual-report-2023-24.pdf",
+    "batch_a/faculty-entrepreneurship-and-technical-start-ups-policy.pdf",
+    "batch_a/fee-structure-page.html",
+    "batch_a/grading-page.html",
+    "batch_a/prospectus-2026-academic-rules-and-regulations.pdf",
+    "batch_a/student-handbook-jun-2026.pdf",
+    "batch_a/undergraduate-academic-rules-aug-2023.pdf"
+  ]
+}

@@ -1,0 +1,7 @@
+api-5bc86b48bd-rhdc6     6m    402Mi   
+api-5bc86b48bd-rhksw     6m    402Mi   
+api-5bc86b48bd-s65h7     5m    401Mi   
+chroma-0                 9m    962Mi   
+datalake-shell           4m    33Mi    
+redis-785b7dc475-62x8x   15m   14Mi    
+ui-c8c6d7f5c-q6t4z       1m    4Mi     

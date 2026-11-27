@@ -1,0 +1,23 @@
+# Verification report — run 20261127T003938Z
+
+Collection `rahbar_v2_c250`; 11 document(s) verified, 9 unchanged document(s) skipped (verified in an earlier run).
+
+| file | doc_id@version | quality | completeness | recency | uniqueness | disposition |
+|---|---|---|---|---|---|---|
+| batch_b/annual-report-2023-24-partial.pdf | annual-report-2023-24-partial@2023-24 | FAIL: failed extraction: ExtractionError: pdf unreadable: pdfplumber=PdfminerException: Unexpected EOF; pypdf=PdfStreamError: Stream has ended unexpectedly | FAIL: missing metadata: page count; truncated: file is 1785159 bytes but the manifest declares 5100456 | PASS: only version of annual-report-2023-24-partial | PASS: no exact or near duplicate (threshold 0.985) | QUARANTINED |
+| batch_b/career-fair-2026-notice.md | career-fair-2026@2026-11 | PASS: 1269 chars, 1/1 pages with text, clean ratio 1.00 | PASS: source, title, version 2026-11, 1 page(s); not truncated | PASS: only version of career-fair-2026 | PASS: no exact or near duplicate (threshold 0.985); nearest other document batch_a/annual-report-2023-24.pdf at 0.7708 | INDEXED |
+| batch_b/convocation-2026-guidelines.md | convocation-2026@2026-11 | PASS: 1157 chars, 1/1 pages with text, clean ratio 1.00 | PASS: source, title, version 2026-11, 1 page(s); not truncated | PASS: only version of convocation-2026 | PASS: no exact or near duplicate (threshold 0.985); nearest other document batch_b/career-fair-2026-notice.md at 0.8704 | INDEXED |
+| batch_b/fee-structure-2027-28.html | fee-structure@2027-28 | PASS: 3650 chars, 1/1 pages with text, clean ratio 1.00 | PASS: source, title, version 2027-28, 1 page(s); not truncated | PASS: newest version of fee-structure; supersedes 2026-27 | PASS: no exact or near duplicate (threshold 0.985); nearest other document batch_a/prospectus-2026-academic-rules-and-regulations.pdf at 0.7954 | INDEXED |
+| batch_b/grading-policy-reformatted.md | grading-policy-reformatted@2026-11 | PASS: 4726 chars, 1/1 pages with text, clean ratio 1.00 | PASS: source, title, version 2026-11, 1 page(s); not truncated | PASS: only version of grading-policy-reformatted | FAIL: near-duplicate of batch_a/grading-page.html [grading-policy]: doc-embedding cosine 0.9924 >= 0.985 | QUARANTINED |
+| batch_b/hostel-annex-scan.pdf | hostel-annex@2026-11 | FAIL: empty extraction: 0 characters (< 200) | PASS: source, title, version 2026-11, 1 page(s); not truncated | PASS: only version of hostel-annex | PASS: no exact or near duplicate (threshold 0.985) | QUARANTINED |
+| batch_b/makeup-exam-notice.md | makeup-exam-notice@unknown | PASS: 346 chars, 1/1 pages with text, clean ratio 1.00 | FAIL: missing metadata: source, title, date or version | PASS: only version of makeup-exam-notice | PASS: no exact or near duplicate (threshold 0.985); nearest other document batch_a/academic-rules-handbook-jun-2026.pdf at 0.7311 | QUARANTINED |
+| batch_b/prospectus-academic-rules-copy.pdf | prospectus-academic-rules-mirror@2026 | PASS: 20952 chars, 5/5 pages with text, clean ratio 1.00 | PASS: source, title, version 2026, 5 page(s); not truncated | PASS: only version of prospectus-academic-rules-mirror | FAIL: exact duplicate (sha256 a7e7f6896a59) of batch_a/prospectus-2026-academic-rules-and-regulations.pdf [prospectus-academic-rules@2026] | QUARANTINED |
+| batch_b/scanned-notice-garbled.txt | scanned-notice@2026-11 | FAIL: garbled text: clean-char ratio 0.17 (min 0.85), word-like token ratio 0.33 (min 0.50) | PASS: source, title, version 2026-11, 1 page(s); not truncated | PASS: only version of scanned-notice | PASS: no exact or near duplicate (threshold 0.985) | QUARANTINED |
+| batch_b/student-affairs-circular-attendance.md | student-affairs-circular-attendance@2026-11 | PASS: 1099 chars, 1/1 pages with text, clean ratio 1.00 | PASS: source, title, version 2026-11, 1 page(s); not truncated | PASS: only version of student-affairs-circular-attendance | PASS: no exact or near duplicate (threshold 0.985); nearest other document batch_b/convocation-2026-guidelines.md at 0.8007 | INDEXED |
+| batch_b/student-handbook-2026-mirror.pdf | student-handbook-mirror@2026-06 | PASS: 141478 chars, 62/64 pages with text, clean ratio 1.00, 2 page(s) recovered by OCR | PASS: source, title, version 2026-06, 64 page(s); not truncated | PASS: only version of student-handbook-mirror | FAIL: exact duplicate (sha256 717eb4b8d37e) of batch_a/student-handbook-jun-2026.pdf [student-handbook@2026-06] | QUARANTINED |
+
+## Older versions superseded in this run (recency) -> archived
+
+| doc_id | archived version | superseded by | file |
+|---|---|---|---|
+| fee-structure | 2026-27 | 2027-28 | batch_a/fee-structure-page.html |

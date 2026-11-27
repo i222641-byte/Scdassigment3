@@ -1,0 +1,69 @@
+{
+  "records": 41,
+  "window": {
+    "first": "2026-11-27T00:43:35.329+00:00",
+    "last": "2026-11-27T01:03:36.631+00:00"
+  },
+  "top1_similarity": {
+    "n": 41,
+    "min": 0.5562,
+    "p10": 0.592,
+    "p25": 0.6732,
+    "median": 0.7214,
+    "p75": 0.7701,
+    "p90": 0.7887,
+    "max": 0.8349,
+    "histogram": {
+      "0.55-0.60": 6,
+      "0.60-0.65": 2,
+      "0.65-0.70": 10,
+      "0.70-0.75": 11,
+      "0.75-0.80": 10,
+      "0.80-0.85": 2
+    }
+  },
+  "abstention_rate": 0.3659,
+  "abstentions": 15,
+  "cache": {
+    "bypass": 41
+  },
+  "cache_hit_rate": null,
+  "p95_latency_ms_by_stage": {
+    "embed": 63.74,
+    "generate": 27802.45,
+    "guardrail": 1.18,
+    "rerank": 1.87,
+    "retrieve": 49.76,
+    "rewrite": 0.03,
+    "total": 27864.91,
+    "validate": 0.16
+  },
+  "p50_latency_ms_by_stage": {
+    "embed": 40.8,
+    "generate": 20478.63,
+    "guardrail": 0.78,
+    "rerank": 0.94,
+    "retrieve": 14.46,
+    "rewrite": 0.02,
+    "total": 20539.63,
+    "validate": 0.04
+  },
+  "injection_attempts_flagged": 4,
+  "injection_by_stage": {
+    "retrieval": 3,
+    "query": 1
+  },
+  "injection_trace_ids": [
+    "3390879dd28e420f9ebcdd796bf1bd54",
+    "7cb279b9ecad419795c5b9e013262bee",
+    "85af4a66c4fd4013b820365128b0becf"
+  ],
+  "grounding_suppressions": 2,
+  "by_release_collection": {
+    "v2-c250 | rahbar_v2_c250 | nomic-embed-text@0a109f422b47": 41
+  },
+  "filter": {
+    "since": "2026-11-27T00:43:00",
+    "until": "2026-11-27T01:04:30"
+  }
+}
