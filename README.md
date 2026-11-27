@@ -3,7 +3,42 @@
 [![CI](https://github.com/YOUR_ORG/rahbar/actions/workflows/ci.yml/badge.svg)](https://github.com/YOUR_ORG/rahbar/actions/workflows/ci.yml)
 
 **Authors:** Zurain (22i-2429) · Taha Yasir (22i-2641)
-**Course:** Software Construction & Development — Assignment 02
+**Course:** Software Construction & Development — Assignment 02 (RAHBAR) and Assignment 03 (RAGOps)
+
+---
+
+## Assignment 03 — RAGOps: commands for each part
+
+The RAGOps layer (paper: Xu et al., *RAGOps*) adds a data-management lifecycle (ingest,
+verify, update the data lake, update retrieval sources) and an operations loop (offline tests
+at three levels, a release gate, traces, metrics, coverage) to RAHBAR, all running on
+Kubernetes. Design notes and every result: **[docs/RAGOPS.md](docs/RAGOPS.md)**. Cluster
+setup from a fresh minikube: **[k8s/README.md](k8s/README.md)**. Run everything from the repo
+root in Git Bash or another POSIX shell.
+
+| Part | What | Command |
+|---|---|---|
+| setup | cluster, images, manifests | see `k8s/README.md` sections 1-3 |
+| **A1/A2** | load Batch A, ingest with verification (report per run) | `scripts/k8s_load_batch.sh a && scripts/k8s_job.sh k8s/jobs/ingest-job.yaml` |
+| A2 | re-run on unchanged corpus: 0 chunks embedded | `scripts/a2_demo.sh unchanged` |
+| A (Batch B) | build + load Batch B (planted problems), ingest | `python corpus/make_batch_b.py && scripts/k8s_load_batch.sh b && scripts/k8s_job.sh k8s/jobs/ingest-job.yaml` |
+| A2 | changed doc / deleted doc / rollback / counts | `scripts/a2_demo.sh change` · `delete` · `restore` · `unpin` · `counts` |
+| **B** | whole suite, one command, timestamped result in `eval/results/` | `scripts/k8s_job.sh k8s/eval-job.yaml` (cluster) or `python eval/suite.py --api http://localhost:8080 --label run` (port-forward) |
+| B | stochasticity: fixed seeds, suite run twice, diff per metric | `scripts/k8s_job.sh k8s/jobs/eval-baseline-job.yaml` |
+| **C1** | candidate (chunk 250/50, own collection) vs baseline | `scripts/k8s_job.sh k8s/jobs/ingest-candidate-job.yaml && kubectl apply -f k8s/release/api-candidate.yaml && scripts/k8s_job.sh k8s/jobs/eval-candidate-job.yaml` |
+| C2 | release gate on any result file | `python eval/gate.py --candidate eval/results/<file>.json --baseline eval/results/baseline.json` |
+| C3/F3 | release, watch, undo | `kubectl set env deployment/api -n rahbar CHROMA_COLLECTION=<c> RELEASE=<r>` · `kubectl rollout status deployment/api -n rahbar` · `kubectl rollout undo deployment/api -n rahbar` |
+| **D1** | trace record per query (stdout + `/ops/traces` volume) | `kubectl logs -n rahbar -l app=api --tail=20 \| grep '"kind": "trace"'` |
+| D2 | rebuild the prompt for a trace id | `kubectl exec -n rahbar deploy/api -- python -m app.trace_tool <trace_id>` |
+| D3 | metrics endpoint + trace-window summary | `kubectl port-forward -n rahbar svc/api 8080:80` then `curl localhost:8080/metrics`; `python scripts/trace_metrics.py traces/ --since <ISO> --until <ISO>` |
+| D4 | injection rail logged in the trace | ask anything about attendance after Batch B; see `guardrails` in the trace |
+| **E2/E4** | query coverage; exits 1 below 85% | `python eval/coverage.py --label before` (and `--label after`) |
+| E3 | data drift: re-run the suite after Batch B | `scripts/k8s_job.sh k8s/eval-job.yaml` |
+| **F** | everything on the cluster; copy results back | `kubectl get all,pvc,configmap,cronjob,job -n rahbar` · `scripts/k8s_collect.sh` |
+
+Result files: `eval/results/` (suite runs `*.json` + `*.md`, gate results, coverage, ingestion
+and verification reports under `eval/results/ingest/`, command logs under `eval/results/k8s/`)
+and `traces/` (trace JSON lines copied from the cluster volume).
 
 ---
 

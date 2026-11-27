@@ -1,0 +1,17 @@
+[C-fail] C - release gate failing (bad candidate c60)
+captured 2026-11-27 01:53:26 UTC on our minikube cluster (namespace rahbar)
+
+$ python eval/gate.py --candidate eval/results/20261127T001656Z_candidate-c60.json --baseline eval/results/baseline.json; echo "exit status: $?"
+candidate  eval\results\20261127T001656Z_candidate-c60.json  (rahbar_v3_c60, release v3-c60-candidate)
+baseline   eval\results\baseline.json  (rahbar_v1)
+thresholds C:\Users\zurai\Downloads\Fall2026\Scd\i222641_i222429_a02\rahbar-starter\rahbar-starter\eval\gate.yaml
+check                              value  threshold                         result
+recall@5 drop vs baseline         0.8929  >= 0.8750 - 0.02 = 0.8550         pass
+faithfulness                      0.7727  >= 0.8                            FAIL
+p95 latency (ms)              20111.5800  <= 45000                          pass
+abstention correctness            1.0000  >= 1.0 (baseline)                 pass
+citation validity                 0.9296  >= 0.7                            pass
+false abstention rate             0.2143  <= 0.4                            pass
+
+RELEASE GATE: FAIL
+exit status: 1

@@ -1,0 +1,17 @@
+{
+  "baseline": "20261126T232355Z_baseline.json",
+  "baseline_v0": "20261126T175718Z_baseline-v0-before-judge-and-citation-fixes.json",
+  "cand_bad": "20261127T001656Z_candidate-c60.json",
+  "cand_good": "20261127T003525Z_candidate-c250.json",
+  "live": "20261127T010412Z_live.json",
+  "ingest_a": "ingest/20261126T164648Z/ingestion.json",
+  "ingest_unchanged": "ingest/20261126T164944Z/ingestion.json",
+  "ingest_b": "ingest/20261127T003938Z/ingestion.json",
+  "verify_b": "ingest/20261127T003938Z/verification.json",
+  "ingest_change": "ingest/20261127T004038Z/ingestion.json",
+  "ingest_delete": "ingest/20261127T004010Z/ingestion.json",
+  "restore": "ingest/20261127T004124Z/restore.json",
+  "coverage_before": "coverage_20261126T181757Z_before.json",
+  "coverage_after": "coverage_20261127T004311Z_after.json",
+  "trace_metrics": "trace_metrics_all.json"
+}
