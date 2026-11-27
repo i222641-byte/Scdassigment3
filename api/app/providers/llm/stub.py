@@ -12,7 +12,7 @@ from ...schemas import Answer, Citation, Passage
 class StubProvider:
     name = "stub"
 
-    def generate(self, question: str, passages: list[Passage]) -> Answer:
+    def generate(self, question: str, passages: list[Passage], prompt: str | None = None) -> Answer:
         if not passages:
             return Answer(
                 reasoning="stub: nothing was retrieved",

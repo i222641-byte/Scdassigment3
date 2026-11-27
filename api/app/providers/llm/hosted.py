@@ -92,8 +92,8 @@ class HostedProvider:
     def __init__(self, settings: Settings) -> None:
         self.settings = settings
 
-    def generate(self, question: str, passages: list[Passage]) -> Answer:
-        prompt = _build_prompt(question, passages)
+    def generate(self, question: str, passages: list[Passage], prompt: str | None = None) -> Answer:
+        prompt = prompt or _build_prompt(question, passages)
 
         for attempt in range(2):
             try:

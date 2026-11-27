@@ -33,7 +33,12 @@ def _cosine(a: list[float], b: list[float]) -> float:
 
 
 class SemanticCache:
-    def __init__(self, settings: Settings) -> None:
+    def __init__(self, settings: Settings, scope: str = "") -> None:
+        # A03: entries are scoped by collection + index_version. A re-index bumps
+        # index_version, so stale answers are never served and the ingestion Job needs no
+        # access to Redis (it stays the only writer of exactly one store: Chroma).
+        self._prefix = _CACHE_KEY_PREFIX + (scope + ":" if scope else "")
+        self._index_key = self._prefix + "index"
         self._settings = settings
         self._redis = None
         self._embed_url = settings.ollama_url
@@ -95,7 +100,7 @@ class SemanticCache:
             best_key: str | None = None
 
             while True:
-                cursor, members = self._redis.sscan(_INDEX_KEY, cursor=cursor, count=100)
+                cursor, members = self._redis.sscan(self._index_key, cursor=cursor, count=100)
                 for key in members:
                     raw = self._redis.get(key)
                     if raw is None:
@@ -147,10 +152,10 @@ class SemanticCache:
         try:
             import hashlib
 
-            key = _CACHE_KEY_PREFIX + hashlib.sha256(question.encode()).hexdigest()
+            key = self._prefix + hashlib.sha256(question.encode()).hexdigest()
             entry = json.dumps({"vector": vec, "response": response})
-            self._redis.set(key, entry)
-            self._redis.sadd(_INDEX_KEY, key)
+            self._redis.set(key, entry, ex=7 * 24 * 3600)
+            self._redis.sadd(self._index_key, key)
             log.debug("cache put", extra={"key": key})
         except Exception as exc:
             log.warning("cache put failed", extra={"error": str(exc)})
@@ -162,10 +167,10 @@ class SemanticCache:
 
         try:
             # Collect all tracked keys then delete them and the index
-            keys = list(self._redis.smembers(_INDEX_KEY))
+            keys = list(self._redis.smembers(self._index_key))
             if keys:
                 self._redis.delete(*keys)
-            self._redis.delete(_INDEX_KEY)
+            self._redis.delete(self._index_key)
             log.info("cache invalidated", extra={"evicted": len(keys)})
         except Exception as exc:
             log.warning("cache invalidate failed", extra={"error": str(exc)})

@@ -44,3 +44,16 @@ class StubRetriever:
 
     def retrieve(self, question: str, k: int) -> list[Passage]:
         return [p.model_copy() for p in _PASSAGES[:k]]
+
+    # A03 interface used by services/answer.py (embed and search timed separately)
+    def info(self, max_age: float = 15.0) -> dict:
+        return {"name": "stub", "embed_model": "stub", "embed_digest": "stub", "index_version": "stub"}
+
+    def embed(self, text: str) -> list[float]:
+        return []
+
+    def search(self, vec: list[float], k: int, where: dict | None) -> list[Passage]:
+        return [p.model_copy() for p in _PASSAGES[:k]]
+
+    def get_chunks(self, ids: list[str]) -> dict[str, Passage]:
+        return {p.chunk_id: p.model_copy() for p in _PASSAGES if p.chunk_id in ids}

@@ -1,8 +1,8 @@
 """Runtime configuration, read once from environment variables.
 
-On the cluster these variables come from your ConfigMap and Secret (section 4.1).
-Nothing here is baked into the image, so one image runs in every environment.
-Add your own keys (relevance floor, cache settings, ...) the same way.
+On the cluster these variables come from the ConfigMap (envFrom) and, for the values that
+define a *release* (collection, release label), from the Deployment's pod template `env`,
+so that `kubectl rollout undo` reverts them (A03 F3). Nothing is baked into the image.
 """
 
 from __future__ import annotations
@@ -21,32 +21,36 @@ def _float(name: str, default: float) -> float:
 
 @dataclass(frozen=True)
 class Settings:
-    # Which implementations to load. "stub" needs no cluster, no model, no network.
     retriever: str = "stub"          # RETRIEVER: stub | chroma
     llm_provider: str = "stub"       # LLM_PROVIDER: stub | ollama-host | ollama-incluster | hosted
 
-    # The embedding pin (section 4.4). The indexer reads the same ConfigMap key.
     embed_model: str = "nomic-embed-text"
 
-    # Vector store
     chroma_host: str = "chroma"
     chroma_port: int = 8000
-    collection: str = "rahbar"
+    collection: str = "rahbar_v1"
 
-    # Retrieval and generation
     top_k: int = 5
     temperature: float = 0.2
+    seed: int = 42                   # SEED: fixed so repeated runs are comparable (A03 B)
     llm_model: str = "llama3.2:3b"
     ollama_url: str = "http://host.minikube.internal:11434"
-    hosted_base_url: str = ""        # e.g. an OpenAI-compatible endpoint
-    llm_api_key: str = field(default="", repr=False)   # from the Secret; never log it
+    hosted_base_url: str = ""
+    llm_api_key: str = field(default="", repr=False)
 
     log_level: str = "INFO"
 
-    # Retrieval quality gate and semantic cache (section 3.3)
-    relevance_floor: float = 0.35      # RELEVANCE_FLOOR: minimum score to include passage
-    cache_threshold: float = 0.92      # CACHE_THRESHOLD: cosine similarity for cache hit
-    redis_url: str = "redis://redis:6379"  # REDIS_URL
+    relevance_floor: float = 0.35
+    cache_threshold: float = 0.92
+    redis_url: str = "redis://redis:6379"
+
+    # A03 additions
+    rerank: str = "lexical"          # RERANK: lexical | none
+    candidate_pool: int = 2          # CANDIDATE_POOL: fetch top_k * this, rerank, keep top_k
+    prompt_template: str = "v1"      # PROMPT_TEMPLATE
+    trace_dir: str = ""              # TRACE_DIR: volume for trace JSON lines ("" = stdout only)
+    release: str = "dev"             # RELEASE: label of the running release (pod template env)
+    guardrails: bool = True          # GUARDRAILS: injection rail on query and retrieved chunks
 
 
 def get_settings() -> Settings:
@@ -56,9 +60,10 @@ def get_settings() -> Settings:
         embed_model=os.environ.get("EMBED_MODEL", "nomic-embed-text"),
         chroma_host=os.environ.get("CHROMA_HOST", "chroma"),
         chroma_port=_int("CHROMA_PORT", 8000),
-        collection=os.environ.get("CHROMA_COLLECTION", "rahbar"),
+        collection=os.environ.get("CHROMA_COLLECTION", "rahbar_v1"),
         top_k=_int("TOP_K", 5),
         temperature=_float("TEMPERATURE", 0.2),
+        seed=_int("SEED", 42),
         llm_model=os.environ.get("LLM_MODEL", "llama3.2:3b"),
         ollama_url=os.environ.get("OLLAMA_URL", "http://host.minikube.internal:11434"),
         hosted_base_url=os.environ.get("HOSTED_BASE_URL", ""),
@@ -67,4 +72,10 @@ def get_settings() -> Settings:
         relevance_floor=_float("RELEVANCE_FLOOR", 0.35),
         cache_threshold=_float("CACHE_THRESHOLD", 0.92),
         redis_url=os.environ.get("REDIS_URL", "redis://redis:6379"),
+        rerank=os.environ.get("RERANK", "lexical"),
+        candidate_pool=_int("CANDIDATE_POOL", 2),
+        prompt_template=os.environ.get("PROMPT_TEMPLATE", "v1"),
+        trace_dir=os.environ.get("TRACE_DIR", ""),
+        release=os.environ.get("RELEASE", "dev"),
+        guardrails=os.environ.get("GUARDRAILS", "true").lower() != "false",
     )
