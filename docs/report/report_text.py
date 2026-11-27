@@ -12,7 +12,7 @@ FILES: dict[str, str] = json.loads((HERE / "files.json").read_text(encoding="utf
 NOTES: dict[str, Any] = json.loads((HERE / "notes.json").read_text(encoding="utf-8"))
 
 AUTHORS = [("Zurain", "22i-2429"), ("Taha Yasir", "22i-2641")]
-REPO = "https://github.com/i222641-byte/scdassigment2"
+REPO = "https://github.com/i222641-byte/Scdassigment3"
 
 
 def _s(run: dict, k: str) -> Any:

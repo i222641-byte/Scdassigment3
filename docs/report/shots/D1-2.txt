@@ -1,0 +1,73 @@
+# [D1-2] D1 one full trace record (kubectl logs of an api pod, saved and paged) - page 2/5
+# 2026-11-27 02:36:45 UTC  (minikube, namespace rahbar)
+
+zurai@ZurainAwan MINGW64 ~/rahbar (a03)
+$ fold -w 230 docs/report/shots/_work/d1_trace.json | sed -n '66,130p'
+                "source": "prospectus-2026-academic-rules-and-regulations.pdf",
+                "doc_version": "2026",
+                "page": 2,
+                "section": "3.99 would be included in the Dean's d) If the Warning Count becomes and FYP-II.",
+                "score": 0.7496,
+                "superseded": false,
+                "rank": 4
+            },
+            {
+                "chunk_id": "3cc13ba7adcf63f2f4d8",
+                "doc_id": "ug-academic-rules",
+                "source": "academic-rules-handbook-jun-2026.pdf",
+                "doc_version": "2026-06",
+                "page": 25,
+                "section": "5. Academic Assessment 5.7 If the CGPA equals or exceeds 2.00 after the 1st or 2",
+                "score": 0.7475,
+                "superseded": false,
+                "rank": 5
+            },
+            {
+                "chunk_id": "b5ddfccf7b286ce49011",
+                "doc_id": "ug-academic-rules",
+                "source": "academic-rules-handbook-jun-2026.pdf",
+                "doc_version": "2026-06",
+                "page": 25,
+                "section": "5.3 Any deviation from Rule 5.2 above if necessitated by the",
+                "score": 0.7226,
+                "superseded": false,
+                "rank": 6
+            },
+            {
+                "chunk_id": "9de866717f0739edd679",
+                "doc_id": "prospectus-academic-rules",
+                "source": "prospectus-2026-academic-rules-and-regulations.pdf",
+                "doc_version": "2026",
+                "page": 2,
+                "section": "",
+                "score": 0.7053,
+                "superseded": false,
+                "rank": 7
+            },
+            {
+                "chunk_id": "0ed8feb61bf1748779d2",
+                "doc_id": "grading-policy",
+                "source": "grading-page.html",
+                "doc_version": "2026",
+                "page": 1,
+                "section": "",
+                "score": 0.7036,
+                "superseded": false,
+                "rank": 8
+            },
+            {
+                "chunk_id": "bcae491a77139cfee025",
+                "doc_id": "ug-academic-rules",
+                "source": "academic-rules-handbook-jun-2026.pdf",
+                "doc_version": "2026-06",
+                "page": 11,
+                "section": "1.24 When a student is readmitted with credit exemptions from a B+, B, B- Good",
+                "score": 0.6903,
+                "superseded": false,
+                "rank": 9
+            },
+            {
+                "chunk_id": "7383eaa8d654aae9be2b",
+
+zurai@ZurainAwan MINGW64 ~/rahbar (a03)
+$ 

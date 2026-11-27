@@ -1,0 +1,73 @@
+# [D1-5] D1 one full trace record (kubectl logs of an api pod, saved and paged) - page 5/5
+# 2026-11-27 02:36:54 UTC  (minikube, namespace rahbar)
+
+zurai@ZurainAwan MINGW64 ~/rahbar (a03)
+$ fold -w 230 docs/report/shots/_work/d1_trace.json | sed -n '261,325p'
+ring semesters and is deficiency of two courses.\nstudy plan. to pay the current semester fees. Students having a deficiency of\n[/EVIDENCE 5]\n\nQuestion: What minimum CGPA is required to avoid academic warning?\n\nAnswer the que
+stion in one or two sentences using the facts and exact figures in the evidence,\nset \"answered_from_context\" to true, and list the evidence blocks you used in \"citations\"\n(source, section and page copied from the block heade
+r).\nOnly when no evidence block contains information that answers the question, set \"answer\" to\n\"The documents I have do not cover this question.\", \"answered_from_context\" to false and\n\"citations\" to [].\n\"reasoning\" 
+= one short sentence. \"confidence\" = high, medium or low.\nReturn only the JSON object."
+    },
+    "model": {
+        "provider": "ollama",
+        "name": "llama3.2:3b",
+        "temperature": 0.2,
+        "seed": 42,
+        "top_k": 5,
+        "candidate_pool": 2,
+        "tokens_in": 2131,
+        "tokens_out": 123,
+        "attempts": 1,
+        "fallback": false
+    },
+    "response": {
+        "answer": "2.00",
+        "answered_from_context": true,
+        "confidence": "high"
+    },
+    "citations": [
+        {
+            "source": "academic-rules-handbook-jun-2026.pdf",
+            "section": "5.4",
+            "page": 24
+        },
+        {
+            "source": "prospectus-2026-academic-rules-and-regulations.pdf",
+            "section": "3.99",
+            "page": 2
+        }
+    ],
+    "citations_dropped": 0,
+    "citations_repaired": 0,
+    "citations_raw": [
+        {
+            "source": "academic-rules-handbook-jun-2026.pdf",
+            "section": "5.4",
+            "page": 24,
+            "status": "exact",
+            "resolved_page": 24
+        },
+        {
+            "source": "prospectus-2026-academic-rules-and-regulations.pdf",
+            "section": "3.99",
+            "page": 2,
+            "status": "exact",
+            "resolved_page": 2
+        }
+    ],
+    "abstained": false,
+    "abstain_reason": null,
+    "latency_ms": {
+        "rewrite": 0.01,
+        "embed": 137.48,
+        "retrieve": 110.77,
+        "rerank": 0.68,
+        "guardrail": 0.67,
+        "generate": 26148.06,
+        "validate": 0.05,
+        "total": 26402.38
+    }
+}
+
+zurai@ZurainAwan MINGW64 ~/rahbar (a03)
+$ 

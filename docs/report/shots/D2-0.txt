@@ -1,0 +1,14 @@
+# [D2-0] D2 trace tool rebuilding the exact context and prompt for a trace id
+# 2026-11-27 02:36:57 UTC  (minikube, namespace rahbar)
+
+zurai@ZurainAwan MINGW64 ~/rahbar (a03)
+$ TID=$(python -c "import json;print(json.load(open('docs/report/shots/_work/d1_trace.json'))['trace_id'])"); echo trace_id=$TID
+trace_id=321210607b154855a79ab1aa0c21f46f
+
+zurai@ZurainAwan MINGW64 ~/rahbar (a03)
+$ kubectl exec -n rahbar deploy/api -- python -m app.trace_tool $TID > docs/report/shots/_work/d2_tool.txt; echo "exit status: $?"; wc -l docs/report/shots/_work/d2_tool.txt
+exit status: 0
+162 docs/report/shots/_work/d2_tool.txt
+
+zurai@ZurainAwan MINGW64 ~/rahbar (a03)
+$ 

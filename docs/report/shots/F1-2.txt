@@ -1,0 +1,20 @@
+# [F1-2] F1 kubectl get all,pvc,configmap,cronjob,job in namespace rahbar - page 2/2
+# 2026-11-27 02:37:39 UTC  (minikube, namespace rahbar)
+
+zurai@ZurainAwan MINGW64 ~/rahbar (a03)
+$ fold -w 250 docs/report/shots/_work/f1_get_all.txt | sed -n '66,130p'
+
+NAME                                         STATUS   VOLUME                                     CAPACITY   ACCESS MODES   STORAGECLASS   VOLUMEATTRIBUTESCLASS   AGE
+persistentvolumeclaim/chroma-data-chroma-0   Bound    pvc-15c29815-1358-4a53-b133-c6ab70dbc9bc   2Gi        RWO            standard       <unset>                 9h
+persistentvolumeclaim/datalake-pvc           Bound    pvc-cea20743-d281-40b7-8c60-0e47079df9f5   3Gi        RWO            standard       <unset>                 9h
+persistentvolumeclaim/ops-pvc                Bound    pvc-5168aa0c-bc00-4248-8106-a4808e80cf71   1Gi        RWO            standard       <unset>                 9h
+persistentvolumeclaim/redis-pvc              Bound    pvc-ad01d3ad-fbc7-4cf4-9acc-39a5f2e914fc   1Gi        RWO            standard       <unset>                 9h
+
+NAME                         DATA   AGE
+configmap/kube-root-ca.crt   1      9h
+configmap/rahbar-config      27     9h
+configmap/rahbar-evaldata    4      9h
+configmap/rahbar-gate        1      9h
+
+zurai@ZurainAwan MINGW64 ~/rahbar (a03)
+$ 

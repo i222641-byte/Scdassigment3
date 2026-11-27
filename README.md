@@ -1,6 +1,6 @@
 # RAHBAR — Grounded RAG on Kubernetes
 
-[![CI](https://github.com/YOUR_ORG/rahbar/actions/workflows/ci.yml/badge.svg)](https://github.com/YOUR_ORG/rahbar/actions/workflows/ci.yml)
+[![CI](https://github.com/i222641-byte/Scdassigment3/actions/workflows/ci.yml/badge.svg)](https://github.com/i222641-byte/Scdassigment3/actions/workflows/ci.yml)
 
 **Authors:** Zurain (22i-2429) · Taha Yasir (22i-2641)
 **Course:** Software Construction & Development — Assignment 02 (RAHBAR) and Assignment 03 (RAGOps)

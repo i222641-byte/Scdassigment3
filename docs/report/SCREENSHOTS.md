@@ -1,31 +1,29 @@
-# Appendix screenshots: what to capture
+# Appendix screenshots
 
-The assignment requires terminal screenshots from **your own cluster**, showing the command
-and its full output, labelled by part. Each row gives the command to run in Git Bash from the
-repository root. The output we already captured from the same commands is in
-`eval/results/k8s/` (use it to check that your screenshot shows the same thing).
+Every screenshot in `docs/report/shots/` is a **real Git Bash terminal window** (mintty) on our
+laptop, running the command live against our minikube cluster (namespace `rahbar`). They are
+taken by:
 
-Before you start: `minikube start`, then `kubectl get pods -n rahbar` (all Running).
+```bash
+python docs/report/shoot.py            # all captures, in order (F3 does a real bad release + undo)
+python docs/report/shoot.py F3 D1 D2   # only some
+```
 
-| Label | What | Command | Reference log |
-|---|---|---|---|
-| A1 | Verification report for Batch B (pass/fail per check, reasons) | `kubectl exec -n rahbar datalake-shell -- cat /data/reports/20261127T003938Z/verification.md` | `12_ingest_batch_b.log` |
-| A2 | Second ingestion on an unchanged corpus: 0 chunks embedded | `scripts/a2_demo.sh unchanged` | `02_ingest_unchanged.log` |
-| B | Evaluation summary with all three levels | `cat eval/results/20261126T232355Z_baseline.md` (or run `scripts/k8s_job.sh k8s/eval-job.yaml`) | `06_eval_baseline.log` |
-| C (fail) | Release gate failing | `python eval/gate.py --candidate eval/results/20261127T001656Z_candidate-c60.json --baseline eval/results/baseline.json` | `08_candidate_bad_c60_gate.log` |
-| C (pass) | Release gate passing | `python eval/gate.py --candidate eval/results/20261127T010412Z_live.json --baseline eval/results/baseline.json` | `18_eval_live_after_batch_b.log` |
-| D1 | One full trace record | `kubectl logs -n rahbar -l app=api --tail=50 \| grep '"kind": "trace"' \| tail -1 \| python -m json.tool` | `traces/*.jsonl` |
-| D2 | Trace tool rebuilding the prompt for a trace id | `kubectl exec -n rahbar deploy/api -- python -m app.trace_tool <trace_id>` | `20_d2_trace_tool.log` |
-| E | Coverage before and after the new questions | `python eval/coverage.py --label before --golden <33-question copy>` and `python eval/coverage.py --label after` | `07_coverage_before.log`, `17_coverage_after.log` |
-| F1 | Everything in the namespace | `kubectl get all,pvc,configmap,cronjob,job -n rahbar` | `19_kubectl_get_all.txt` |
-| F2 (ingest) | Logs of a completed ingestion Job | `kubectl logs -n rahbar job/ingest-run` | `12_ingest_batch_b.log` |
-| F2 (eval) | Logs of a completed evaluation Job | `kubectl logs -n rahbar job/eval` | `18_eval_live_after_batch_b.log` |
-| F2 (ConfigMap) | Gate result changing after a ConfigMap edit | `scripts/release_demo.sh gate` before and after `kubectl edit configmap rahbar-gate -n rahbar` | `09b_gate_configmap_before_edit.log`, `09c_gate_configmap_after_edit.log` |
-| F3 | `kubectl rollout status` and `kubectl rollout undo`, then a trace with the previous collection and embedding version | `scripts/release_demo.sh release rahbar_v3_c60 v3-c60-bad`, `scripts/release_demo.sh undo`, `scripts/release_demo.sh ask "What minimum CGPA is required to avoid academic warning?"` | `11_bad_release_and_undo.log` |
+`shoot.py` opens a terminal window per capture, prints the prompt and command, runs it, and
+saves the window with Win32 `PrintWindow`. The text of each session is kept next to it as
+`<label>.txt`. Long output (the full trace record and the trace tool) is saved to a file once and
+paged with `fold | sed -n`, so no screenshot is cropped; every page shows the command that printed it.
 
-For E "before", recreate the 33-question set with `head -33 eval/golden.jsonl > /tmp/golden33.jsonl`
-and pass `--golden /tmp/golden33.jsonl`.
-
-Note: the gate threshold for raw citation validity is now 0.70 in the ConfigMap. To show
-FAIL -> PASS again, edit it to 0.80, run `scripts/release_demo.sh gate` (FAIL on the c250
-result), set it back to 0.70 and run it again (PASS).
+| Label | What | Command(s) |
+|---|---|---|
+| A1 | Verification report for Batch B (pass/fail per check, reasons) | `kubectl exec -n rahbar datalake-shell -- cat /data/reports/20261127T003938Z/verification.md` |
+| A2 | Second ingestion on an unchanged corpus: 0 chunks embedded; counts by doc id | `scripts/a2_demo.sh unchanged`, `scripts/a2_demo.sh counts` |
+| B | Evaluation summary, all three levels | `cat eval/results/20261126T232355Z_baseline.md` |
+| C-fail / C-pass | Release gate failing / passing | `python eval/gate.py --candidate <result> --baseline eval/results/baseline.json` |
+| D1 | One full trace record | `kubectl logs <newest api pod> \| grep '"kind": "trace"' \| tail -1 \| python -m json.tool` |
+| D2 | Trace tool rebuilding the prompt for that trace id | `kubectl exec -n rahbar deploy/api -- python -m app.trace_tool <trace_id>` |
+| E-before / E-after | Coverage with 33 and 41 golden questions | `python eval/coverage.py --label before --golden <first 33>` / `--label after` |
+| F1 | Everything in the namespace | `kubectl get all,pvc,configmap,cronjob,job -n rahbar` |
+| F2-ingest / F2-eval | Logs of completed ingestion and evaluation Jobs | `kubectl logs -n rahbar job/ingest-run`, `kubectl logs -n rahbar job/eval` |
+| F2-configmap | Gate result changes after a ConfigMap edit (no rebuild) | `kubectl patch configmap rahbar-gate ...` then `scripts/k8s_job.sh k8s/jobs/gate-job.yaml` |
+| F3-1..4 | Bad release, `kubectl rollout status`, `kubectl rollout undo`, trace before and after | `scripts/release_demo.sh release rahbar_v3_c60 v3-c60-bad`, `... ask`, `... undo`, `... ask` |

@@ -1,0 +1,73 @@
+# [D1-3] D1 one full trace record (kubectl logs of an api pod, saved and paged) - page 3/5
+# 2026-11-27 02:36:48 UTC  (minikube, namespace rahbar)
+
+zurai@ZurainAwan MINGW64 ~/rahbar (a03)
+$ fold -w 230 docs/report/shots/_work/d1_trace.json | sed -n '131,195p'
+                "doc_id": "prospectus-academic-rules",
+                "source": "prospectus-2026-academic-rules-and-regulations.pdf",
+                "doc_version": "2026",
+                "page": 1,
+                "section": "1. Attendance Requirement 4. Semester Course Load",
+                "score": 0.6883,
+                "superseded": false,
+                "rank": 10
+            }
+        ]
+    },
+    "reranker": {
+        "name": "lexical",
+        "scores": [
+            0.7946,
+            0.7934,
+            0.7796,
+            0.7642,
+            0.7371
+        ]
+    },
+    "reranked_order": [
+        "87843148278768b9191b",
+        "b79fc8ac1cb7b9b7b1cc",
+        "e7655047c5ec14fa0df6",
+        "b5ddfccf7b286ce49011",
+        "f6217a37538ee20cbd2a"
+    ],
+    "relevance_floor": 0.35,
+    "top1_similarity": 0.7701,
+    "context_chunk_ids": [
+        "87843148278768b9191b",
+        "b79fc8ac1cb7b9b7b1cc",
+        "e7655047c5ec14fa0df6",
+        "b5ddfccf7b286ce49011",
+        "f6217a37538ee20cbd2a"
+    ],
+    "context": [
+        {
+            "chunk_id": "87843148278768b9191b",
+            "doc_id": "ug-academic-rules",
+            "source": "academic-rules-handbook-jun-2026.pdf",
+            "doc_version": "2026-06",
+            "page": 24,
+            "section": "5. Academic Assessment",
+            "score": 0.7583,
+            "superseded": false
+        },
+        {
+            "chunk_id": "b79fc8ac1cb7b9b7b1cc",
+            "doc_id": "prospectus-academic-rules",
+            "source": "prospectus-2026-academic-rules-and-regulations.pdf",
+            "doc_version": "2026",
+            "page": 2,
+            "section": "11. Academic Warning/Probation five courses.",
+            "score": 0.7569,
+            "superseded": false
+        },
+        {
+            "chunk_id": "e7655047c5ec14fa0df6",
+            "doc_id": "grading-policy",
+            "source": "grading-page.html",
+            "doc_version": "2026",
+            "page": 1,
+            "section": "",
+
+zurai@ZurainAwan MINGW64 ~/rahbar (a03)
+$ 

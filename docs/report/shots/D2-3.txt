@@ -1,0 +1,45 @@
+# [D2-3] D2 trace tool rebuilding the exact context and prompt for a trace id - page 3/3
+# 2026-11-27 02:37:09 UTC  (minikube, namespace rahbar)
+
+zurai@ZurainAwan MINGW64 ~/rahbar (a03)
+$ fold -w 230 docs/report/shots/_work/d2_tool.txt | sed -n '131,195p'
+e) If after receiving warning, semesters in the study plan of
+to their distinguished performance.
+The Dean's list will be issued and CGPA improves and equals or his/her degree program. The
+displayed after each semester and a exceeds the required minimum, Head of Department can allow
+recognitioncertificate will be issued. the Warning Count is reset to zero. registration in cases where there
+Student's name is also placed on the
+is deficiency of one course. The
+University's website. Only those
+12. Semester Registration Director of the campus can allow
+students are included in the list who
+have completed the semester with Students are required to register registration in cases where there
+regular course load prescribed in the in Fall and Spring semesters and is deficiency of two courses.
+study plan. to pay the current semester fees. Students having a deficiency of
+[/EVIDENCE 5]
+
+Question: What minimum CGPA is required to avoid academic warning?
+
+Answer the question in one or two sentences using the facts and exact figures in the evidence,
+set "answered_from_context" to true, and list the evidence blocks you used in "citations"
+(source, section and page copied from the block header).
+Only when no evidence block contains information that answers the question, set "answer" to
+"The documents I have do not cover this question.", "answered_from_context" to false and
+"citations" to [].
+"reasoning" = one short sentence. "confidence" = high, medium or low.
+Return only the JSON object.
+
+--- REBUILD FROM VECTOR STORE ---
+rebuilt hash    sha256:1f481fb0d0294e768296d54f6e6aa776d77059f08bc8b3467705b96e796f148d
+matches trace   True
+
+--- RESPONSE ---
+{
+  "answer": "2.00",
+  "answered_from_context": true,
+  "confidence": "high"
+}
+citations [{"source": "academic-rules-handbook-jun-2026.pdf", "section": "5.4", "page": 24}, {"source": "prospectus-2026-academic-rules-and-regulations.pdf", "section": "3.99", "page": 2}]
+
+zurai@ZurainAwan MINGW64 ~/rahbar (a03)
+$ 

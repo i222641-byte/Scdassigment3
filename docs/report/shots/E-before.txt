@@ -1,0 +1,44 @@
+# [E-before] E2 coverage BEFORE adding the new golden questions (first 33 questions)
+# 2026-11-27 02:37:12 UTC  (minikube, namespace rahbar)
+
+zurai@ZurainAwan MINGW64 ~/rahbar (a03)
+$ mkdir -p docs/report/shots/_work && head -33 eval/golden.jsonl > docs/report/shots/_work/golden33.jsonl && wc -l docs/report/shots/_work/golden33.jsonl
+33 docs/report/shots/_work/golden33.jsonl
+
+zurai@ZurainAwan MINGW64 ~/rahbar (a03)
+$ python eval/coverage.py --label before --golden docs/report/shots/_work/golden33.jsonl --out-dir docs/report/shots/_work/cov; echo "exit status: $?"
+# Query coverage — before — 20261127T023729Z
+
+golden `golden33.jsonl` (33 questions) · live queries 40 · tau = 0.6308 (= paraphrase-pair p10; unrelated p90 0.3788; rejected midpoint 0.5048) · required share 85%
+
+**Covered: 26/40 = 65.0% -> FAIL (coverage gap)**
+
+| intended | queries | covered |
+|---|---|---|
+| in-domain | 28 | 24 |
+| out-of-domain | 12 | 2 |
+
+## Uncovered queries grouped into topics
+
+- **cafeteria / menu / today** (2): `what is on the cafeteria menu today`; `how much does a lunch meal cost at the campus cafe`
+- **wifi / reset / password** (2): `how do I reset my campus wifi password`; `how to connect my laptop to the university wifi`
+- **happens / caught / cheating** (1): `what happens if im caught cheating in a quiz`
+- **happens / after / warnings** (1): `what happens after 3 warnings in a row`
+- **sgpa / calculated** (1): `how is sgpa calculated`
+- **fee / rechecking / final** (1): `what is the fee for rechecking a final paper`
+- **bus / route / goes** (1): `which bus route goes to G-9 from the campus`
+- **time / last / bus** (1): `what time does the last university bus leave`
+- **book / cricket / ground** (1): `how do I book the cricket ground for a match`
+- **swimming / pool / timings** (1): `what are the swimming pool timings`
+- **car / parking / sticker** (1): `how do I get a car parking sticker`
+- **motorbike / parking** (1): `is there motorbike parking for students`
+
+## All live queries
+
+| id | query | nearest golden | similarity | covered |
+
+results: docs\report\shots\_work\cov\coverage_20261127T023729Z_before.json
+exit status: 1
+
+zurai@ZurainAwan MINGW64 ~/rahbar (a03)
+$ 

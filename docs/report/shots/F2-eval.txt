@@ -1,0 +1,73 @@
+# [F2-eval] F2 logs of a completed evaluation Job (kubectl apply -f k8s/eval-job.yaml)
+# 2026-11-27 02:35:50 UTC  (minikube, namespace rahbar)
+
+zurai@ZurainAwan MINGW64 ~/rahbar (a03)
+$ kubectl get job eval -n rahbar
+NAME   STATUS     COMPLETIONS   DURATION   AGE
+eval   Complete   1/1           20m        112m
+
+zurai@ZurainAwan MINGW64 ~/rahbar (a03)
+$ kubectl logs -n rahbar job/eval | tail -60
+  g34     17.6s answered=False What are the university bus routes and their timings?
+  g35     24.8s answered=False How much is the university transport fee per semester?
+  g36     13.4s answered=False What food does the campus cafeteria serve, and how much does
+  g37     13.3s answered=False How do students book sports facilities such as the cricket g
+  g38     17.6s answered=False How does a student get a vehicle parking sticker for the cam
+  g39     14.3s answered=False How do I reset my university Wi-Fi password?
+  g40     27.2s answered=True  How is the SGPA calculated?
+  g41     20.7s answered=True  What is the fee for rechecking a final exam paper?
+   end-to-end level done
+
+# RAGOps evaluation — live — 20261127T010412Z
+
+API `http://api` · release `v2-c250` · collection `rahbar_v2_c250` · embed `nomic-embed-text` @ `0a109f422b47` · chunk 250/50 · top_k 5 · golden 41 questions · seed 42
+
+| level | metric | run 1 |
+|---|---|---|
+| module | paraphrase_mean_cosine | 0.7815 |
+| module | unrelated_mean_cosine | 0.3352 |
+| module | gap | 0.4463 |
+| module | embed_ms_per_chunk_sequential | 150.5 |
+| module | determinism_max_abs_diff_same_request | 0 |
+| component | recall@3 | 0.8833 |
+| component | recall@5 | 0.9 |
+| component | mrr | 0.8333 |
+| component | ndcg@5 | 0.8414 |
+| e2e | faithfulness | 0.9231 |
+| e2e | judge_human_agreement | 0.875 |
+| e2e | abstention_correctness | 1 |
+| e2e | false_abstention_rate | 0.1333 |
+| e2e | citation_validity | 0.7857 |
+| e2e | answer_match | 0.6207 |
+| e2e | latency_p50_ms | 2.054e+04 |
+| e2e | latency_p95_ms | 2.787e+04 |
+
+**Noise test** (seeded typos in ~30% of words of length >= 4 (swap/drop/duplicate), seed 42):
+
+| metric | clean | noisy | change |
+|---|---|---|---|
+| recall@3 | 0.8833 | 0.8167 | -0.0666 |
+| recall@5 | 0.9 | 0.85 | -0.05 |
+| mrr | 0.8333 | 0.7798 | -0.0535 |
+| ndcg@5 | 0.8414 | 0.7829 | -0.0585 |
+
+**Retrieval by category:** answerable: recall@5 0.9545, MRR 0.8561, hard: recall@5 0.75, MRR 0.7708
+
+**p95 latency per stage (ms):** embed 63.74, generate 27802.45, guardrail 1.18, rerank 1.87, retrieve 49.76, rewrite 0.03, total 27864.91, validate 0.16
+
+## Release gate: **PASS** (baseline `/ops/results/baseline.json`)
+
+| check | value | threshold | result |
+|---|---|---|---|
+| recall@5 drop vs baseline | 0.9 | >= 0.8750 - 0.02 = 0.8550 | pass |
+| faithfulness | 0.9231 | >= 0.8 | pass |
+| p95 latency (ms) | 27870.5 | <= 45000 | pass |
+| abstention correctness | 1.0 | >= 1.0 (baseline) | pass |
+| citation validity | 0.7857 | >= 0.7 | pass |
+| false abstention rate | 0.1333 | <= 0.4 | pass |
+
+results: /ops/results/20261127T010412Z_live.json
+RELEASE GATE: PASS
+
+zurai@ZurainAwan MINGW64 ~/rahbar (a03)
+$ 

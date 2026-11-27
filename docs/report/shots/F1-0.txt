@@ -1,0 +1,10 @@
+# [F1-0] F1 kubectl get all,pvc,configmap,cronjob,job in namespace rahbar
+# 2026-11-27 02:37:33 UTC  (minikube, namespace rahbar)
+
+zurai@ZurainAwan MINGW64 ~/rahbar (a03)
+$ kubectl get all,pvc,configmap,cronjob,job -n rahbar > docs/report/shots/_work/f1_get_all.txt; echo "exit status: $?"; wc -l docs/report/shots/_work/f1_get_all.txt
+exit status: 0
+77 docs/report/shots/_work/f1_get_all.txt
+
+zurai@ZurainAwan MINGW64 ~/rahbar (a03)
+$ 

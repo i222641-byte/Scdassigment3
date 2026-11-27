@@ -1,0 +1,21 @@
+# [C-pass] C2 release gate PASSING (released c250, live run after Batch B)
+# 2026-11-27 02:33:20 UTC  (minikube, namespace rahbar)
+
+zurai@ZurainAwan MINGW64 ~/rahbar (a03)
+$ python eval/gate.py --candidate eval/results/20261127T010412Z_live.json --baseline eval/results/baseline.json; echo "exit status: $?"
+candidate  eval\results\20261127T010412Z_live.json  (rahbar_v2_c250, release v2-c250)
+baseline   eval\results\baseline.json  (rahbar_v1)
+thresholds C:\Users\zurai\Downloads\Fall2026\Scd\i222641_i222429_a03\rahbar-starter\rahbar-starter\eval\gate.yaml
+check                              value  threshold                         result
+recall@5 drop vs baseline         0.9000  >= 0.8750 - 0.02 = 0.8550         pass
+faithfulness                      0.9231  >= 0.8                            pass
+p95 latency (ms)              27870.5000  <= 45000                          pass
+abstention correctness            1.0000  >= 1.0 (baseline)                 pass
+citation validity                 0.7857  >= 0.7                            pass
+false abstention rate             0.1333  <= 0.4                            pass
+
+RELEASE GATE: PASS
+exit status: 0
+
+zurai@ZurainAwan MINGW64 ~/rahbar (a03)
+$ 

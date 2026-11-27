@@ -1,0 +1,45 @@
+# [F2-configmap] F2 gate result changes after a ConfigMap edit (same image, no rebuild)
+# 2026-11-27 02:35:53 UTC  (minikube, namespace rahbar)
+
+zurai@ZurainAwan MINGW64 ~/rahbar (a03)
+$ kubectl get configmap rahbar-gate -n rahbar -o jsonpath='{.data.gate\.yaml}' | grep citation
+min_citation_validity: 0.70
+
+zurai@ZurainAwan MINGW64 ~/rahbar (a03)
+$ kubectl patch configmap rahbar-gate -n rahbar --type merge -p "$(kubectl get configmap rahbar-gate -n rahbar -o json | python -c "import json,sys;d=json.load(sys.stdin)['data'];print(json.dumps({'data':{'gate.yaml':d['gate.yaml'].replace('min_citation_validity: 0.70','min_citation_validity: 0.80')}}))")"
+configmap/rahbar-gate patched
+
+zurai@ZurainAwan MINGW64 ~/rahbar (a03)
+$ scripts/k8s_job.sh k8s/jobs/gate-job.yaml | tail -11
+thresholds /config/gate.yaml
+check                              value  threshold                         result
+recall@5 drop vs baseline         0.8571  >= 0.8750 - 0.02 = 0.8550         pass
+faithfulness                      0.9565  >= 0.8                            pass
+p95 latency (ms)              27142.2800  <= 45000                          pass
+abstention correctness            1.0000  >= 1.0 (baseline)                 pass
+citation validity                 0.7344  >= 0.8                            FAIL
+false abstention rate             0.1786  <= 0.4                            pass
+
+RELEASE GATE: FAIL
+job/gate: Failed
+
+zurai@ZurainAwan MINGW64 ~/rahbar (a03)
+$ kubectl patch configmap rahbar-gate -n rahbar --type merge -p "$(kubectl get configmap rahbar-gate -n rahbar -o json | python -c "import json,sys;d=json.load(sys.stdin)['data'];print(json.dumps({'data':{'gate.yaml':d['gate.yaml'].replace('min_citation_validity: 0.80','min_citation_validity: 0.70')}}))")"
+configmap/rahbar-gate patched
+
+zurai@ZurainAwan MINGW64 ~/rahbar (a03)
+$ scripts/k8s_job.sh k8s/jobs/gate-job.yaml | tail -11
+thresholds /config/gate.yaml
+check                              value  threshold                         result
+recall@5 drop vs baseline         0.8571  >= 0.8750 - 0.02 = 0.8550         pass
+faithfulness                      0.9565  >= 0.8                            pass
+p95 latency (ms)              27142.2800  <= 45000                          pass
+abstention correctness            1.0000  >= 1.0 (baseline)                 pass
+citation validity                 0.7344  >= 0.7                            pass
+false abstention rate             0.1786  <= 0.4                            pass
+
+RELEASE GATE: PASS
+job/gate: Complete
+
+zurai@ZurainAwan MINGW64 ~/rahbar (a03)
+$ 

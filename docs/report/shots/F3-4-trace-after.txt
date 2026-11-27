@@ -1,0 +1,49 @@
+# [F3-4-trace-after] F3 trace after the undo: previous collection and embedding version
+# 2026-11-27 02:34:17 UTC  (minikube, namespace rahbar)
+
+zurai@ZurainAwan MINGW64 ~/rahbar (a03)
+$ scripts/release_demo.sh ask "What minimum CGPA is required to avoid academic warning?"
+$ kubectl exec -n rahbar api-6c5464c4b4-mrwcm -- python -c '<POST /api/ask>'
+{
+ "trace_id": "321210607b154855a79ab1aa0c21f46f",
+ "release": "v2-c250",
+ "collection": "rahbar_v2_c250",
+ "answered_from_context": true,
+ "answer": "2.00",
+ "citations": [
+  {
+   "source": "academic-rules-handbook-jun-2026.pdf",
+   "section": "5.4",
+   "page": 24
+  },
+  {
+   "source": "prospectus-2026-academic-rules-and-regulations.pdf",
+   "section": "3.99",
+   "page": 2
+  }
+ ],
+ "cache": "bypass",
+ "guardrails": []
+}
+$ kubectl logs -n rahbar api-6c5464c4b4-mrwcm --tail=50 | grep '"kind": "trace"' | tail -1  (summarised)
+{
+ "trace_id": "321210607b154855a79ab1aa0c21f46f",
+ "timestamp": "2026-11-27T02:34:21.372+00:00",
+ "release": "v2-c250",
+ "collection": {
+  "name": "rahbar_v2_c250",
+  "index_version": "20261127T004149Z",
+  "chunk_size": 250,
+  "chunk_overlap": 50
+ },
+ "embedding": {
+  "model": "nomic-embed-text",
+  "version": "0a109f422b47",
+  "dimension": 768,
+  "configured_model": "nomic-embed-text"
+ },
+ "guardrails": []
+}
+
+zurai@ZurainAwan MINGW64 ~/rahbar (a03)
+$ 

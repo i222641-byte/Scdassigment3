@@ -1,9 +1,0 @@
-[A2] A2 - second ingestion run on an unchanged corpus: 0 chunks embedded
-captured 2026-11-27 01:53:39 UTC on our minikube cluster (namespace rahbar)
-
-$ scripts/a2_demo.sh unchanged
-{"ts": "2026-11-27T01:53:39Z", "logger": "rahbar.ingest", "msg": "scanned", "run_id": "20261127T015339Z", "files": 12, "unchanged": 12, "changed": 0, "new": 0, "deleted": 0}
-{"ts": "2026-11-27T01:53:41Z", "logger": "rahbar.ingest", "msg": "index synced", "collection": "rahbar_v2_c250", "chunks_embedded": 0, "chunks_added": 0, "chunks_deleted_changed": 0, "chunks_deleted_orphans": 0, "chunks_metadata_updated": 0, "chunks_unchanged": 495, "collection_total_after": 495, "index_version": "20261127T004149Z"}
-| chunks_embedded | 0 |
-| chunks_unchanged | 495 |
-{"ts": "2026-11-27T01:53:41Z", "logger": "rahbar.ingest", "msg": "ingest finished", "documents": {"scanned": 12, "unchanged": 12, "new": 0, "changed": 0, "deleted": 0, "indexed": 0, "archived_on_arrival": 0, "superseded_now": 0, "quarantined": 0}, "chunks": {"chunks_embedded": 0, "chunks_added": 0, "chunks_deleted_changed": 0, "chunks_deleted_orphans": 0, "chunks_metadata_updated": 0, "chunks_unchanged": 495, "collection_total_after": 495, "index_version": "20261127T004149Z"}, "seconds": 1.5}

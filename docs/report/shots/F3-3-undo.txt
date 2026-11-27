@@ -1,0 +1,32 @@
+# [F3-3-undo] F3 kubectl rollout undo + kubectl rollout status
+# 2026-11-27 02:34:05 UTC  (minikube, namespace rahbar)
+
+zurai@ZurainAwan MINGW64 ~/rahbar (a03)
+$ scripts/release_demo.sh undo
+$ kubectl rollout undo deployment/api -n rahbar
+Warning: resource deployments/api was previously managed with 'kubectl apply'. Rolling back will not update the kubectl.kubernetes.io/last-applied-configuration annotation, which may cause unexpected behavior on future 'kubectl apply' operations. Consider using 'kubectl apply' with your previous configuration file instead.
+deployment.apps/api rolled back
+$ kubectl rollout status deployment/api -n rahbar --timeout=600s
+Waiting for deployment "api" rollout to finish: 1 out of 3 new replicas have been updated...
+Waiting for deployment "api" rollout to finish: 1 out of 3 new replicas have been updated...
+Waiting for deployment "api" rollout to finish: 1 out of 3 new replicas have been updated...
+Waiting for deployment "api" rollout to finish: 2 out of 3 new replicas have been updated...
+Waiting for deployment "api" rollout to finish: 2 out of 3 new replicas have been updated...
+Waiting for deployment "api" rollout to finish: 2 out of 3 new replicas have been updated...
+Waiting for deployment "api" rollout to finish: 1 old replicas are pending termination...
+Waiting for deployment "api" rollout to finish: 1 old replicas are pending termination...
+Waiting for deployment "api" rollout to finish: 1 old replicas are pending termination...
+deployment "api" successfully rolled out
+$ kubectl rollout history deployment/api -n rahbar
+deployment.apps/api 
+REVISION  CHANGE-CAUSE
+1         baseline release v1: collection rahbar_v1 (chunk 400/80)
+2         baseline release v1: collection rahbar_v1 (chunk 400/80), image 3.0.1
+3         baseline release v1: collection rahbar_v1 (chunk 400/80), image 3.0.2
+4         baseline release v1: collection rahbar_v1, image 3.0.2, resources from kubectl top
+12        release v3-c60-bad: collection rahbar_v3_c60
+13        release v2-c250: collection rahbar_v2_c250
+
+
+zurai@ZurainAwan MINGW64 ~/rahbar (a03)
+$ 

@@ -1,0 +1,9 @@
+# [D1-0] D1 one full trace record (kubectl logs of an api pod, saved and paged)
+# 2026-11-27 02:36:38 UTC  (minikube, namespace rahbar)
+
+zurai@ZurainAwan MINGW64 ~/rahbar (a03)
+$ mkdir -p docs/report/shots/_work && kubectl logs -n rahbar $(kubectl get pods -n rahbar -l app=api --sort-by=.metadata.creationTimestamp -o jsonpath='{.items[-1:].metadata.name}') --tail=200 | grep '"kind": "trace"' | tail -1 | python -m json.tool > docs/report/shots/_work/d1_trace.json && wc -l docs/report/shots/_work/d1_trace.json
+286 docs/report/shots/_work/d1_trace.json
+
+zurai@ZurainAwan MINGW64 ~/rahbar (a03)
+$ 

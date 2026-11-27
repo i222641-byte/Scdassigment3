@@ -1,0 +1,35 @@
+# [E-after] E4 coverage AFTER adding 8 golden questions (41 questions)
+# 2026-11-27 02:37:56 UTC  (minikube, namespace rahbar)
+
+zurai@ZurainAwan MINGW64 ~/rahbar (a03)
+$ wc -l eval/golden.jsonl
+41 eval/golden.jsonl
+
+zurai@ZurainAwan MINGW64 ~/rahbar (a03)
+$ python eval/coverage.py --label after --out-dir docs/report/shots/_work/cov; echo "exit status: $?"
+# Query coverage — after — 20261127T023814Z
+
+golden `golden.jsonl` (41 questions) · live queries 40 · tau = 0.6308 (= paraphrase-pair p10; unrelated p90 0.3788; rejected midpoint 0.5048) · required share 85%
+
+**Covered: 37/40 = 92.5% -> PASS**
+
+| intended | queries | covered |
+|---|---|---|
+| in-domain | 28 | 26 |
+| out-of-domain | 12 | 11 |
+
+## Uncovered queries grouped into topics
+
+- **happens / caught / cheating** (1): `what happens if im caught cheating in a quiz`
+- **happens / after / warnings** (1): `what happens after 3 warnings in a row`
+- **swimming / pool / timings** (1): `what are the swimming pool timings`
+
+## All live queries
+
+| id | query | nearest golden | similarity | covered |
+
+results: docs\report\shots\_work\cov\coverage_20261127T023814Z_after.json
+exit status: 0
+
+zurai@ZurainAwan MINGW64 ~/rahbar (a03)
+$ 

@@ -1,0 +1,41 @@
+# [A2] A2 second ingestion run on an unchanged corpus: 0 chunks embedded
+# 2026-11-27 02:32:49 UTC  (minikube, namespace rahbar)
+
+zurai@ZurainAwan MINGW64 ~/rahbar (a03)
+$ scripts/a2_demo.sh unchanged
+{"ts": "2026-11-27T02:32:50Z", "logger": "rahbar.ingest", "msg": "scanned", "run_id": "20261127T023250Z", "files": 12, "unchanged": 12, "changed": 0, "new": 0, "deleted": 0}
+{"ts": "2026-11-27T02:32:51Z", "logger": "rahbar.ingest", "msg": "index synced", "collection": "rahbar_v2_c250", "chunks_embedded": 0, "chunks_added": 0, "chunks_deleted_changed": 0, "chunks_deleted_orphans": 0, "chunks_metadata_updated": 0, "chunks_unchanged": 495, "collection_total_after": 495, "index_version": "20261127T004149Z"}
+| chunks_embedded | 0 |
+| chunks_unchanged | 495 |
+{"ts": "2026-11-27T02:32:51Z", "logger": "rahbar.ingest", "msg": "ingest finished", "documents": {"scanned": 12, "unchanged": 12, "new": 0, "changed": 0, "deleted": 0, "indexed": 0, "archived_on_arrival": 0, "superseded_now": 0, "quarantined": 0}, "chunks": {"chunks_embedded": 0, "chunks_added": 0, "chunks_deleted_changed": 0, "chunks_deleted_orphans": 0, "chunks_metadata_updated": 0, "chunks_unchanged": 495, "collection_total_after": 495, "index_version": "20261127T004149Z"}, "seconds": 1.3}
+
+zurai@ZurainAwan MINGW64 ~/rahbar (a03)
+$ scripts/a2_demo.sh counts | tail -25
+    "prospectus-academic-rules": {
+      "2026:active": 20
+    },
+    "student-affairs-circular-attendance": {
+      "2026-11:active": 1
+    },
+    "student-handbook": {
+      "2026-06:active": 122
+    },
+    "ug-academic-rules": {
+      "2023-08:archived": 37,
+      "2026-06:active": 85
+    }
+  },
+  "collection": "rahbar_v2_c250",
+  "collection_metadata": {
+    "chunk_size": 250,
+    "chunk_overlap": 50,
+    "index_version": "20261127T004149Z",
+    "embed_digest": "0a109f422b47",
+    "dimension": 768,
+    "embed_model": "nomic-embed-text"
+  }
+}
+job/ingest-counts: Complete
+
+zurai@ZurainAwan MINGW64 ~/rahbar (a03)
+$ 

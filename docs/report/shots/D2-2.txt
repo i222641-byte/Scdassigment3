@@ -1,0 +1,73 @@
+# [D2-2] D2 trace tool rebuilding the exact context and prompt for a trace id - page 2/3
+# 2026-11-27 02:37:05 UTC  (minikube, namespace rahbar)
+
+zurai@ZurainAwan MINGW64 ~/rahbar (a03)
+$ fold -w 230 docs/report/shots/_work/d2_tool.txt | sed -n '66,130p'
+academic warning: f) Must obtain written approval
+both theory and lab portions of
+BS/BBA programs 2.00 from their Head of Department
+the course.
+MS/MBA programs 2.50 for each course that they register,
+f) Fee is not refunded for withdrawn
+PhD programs 3.00 add, drop or withdraw.
+course.
+g) Students studying under
+218 Prospectus 2026
+[/EVIDENCE 2]
+[EVIDENCE 3] source: grading-page.html, section: , page: 1, version: 2026
+Average B- 2.67 Below Average The Following grades are common for all degree programs: Grade Points Interpretation CR - Continuing Research F 0.00 Fail FA 0.00 Faill (Attendance Shortage) I - Incomplete W - Withdrawn Grades CR, I 
+and W are not used in computing SGPA or the CGPA. Warning/Probation
+At the end of every semester (including the first semester and summer semesters), warning is issued provided the CGPA of a student is less than the minimum required for the degree program.
+A student with a warning cannot register in a subsequent semester without approval of the relevant Head of Department or any other senior faculty nominated by him.
+After each semester (including the summer or the first semester), if the CGPA of a student is less than the required minimum, the Warning Count increases by one.
+If Warning Count becomes three, the admission of student at the University is closed.
+If the CGPA equals or exceeds the required minimum, the Warning Count becomes zero.
+Programs
+Minimum CGPA required to avoid Warning
+BBA/BS
+2.0
+MBA/MS
+2.5
+PhD
+3.0
+The admission will be cancelled automatically after completion of maximum duration allowed to earn a degree.
+Repeating a Course
+A student can repeat a course if that course has not been passed or the student desires to improve his/her grade. A student must repeat all failed courses. Students under warning must repeat such passed courses, in which their GPA
+ is less than the minimum CGPA required for their degree.
+For example, MS students under warning (CGPA less than 2.50) must repeat courses in which their GPA is less than 2.50 (i.e. C or C- grade).
+Incomplete Course
+A student may request an extension in the final examination for genuine reasons subject to the following.
+[/EVIDENCE 3]
+[EVIDENCE 4] source: academic-rules-handbook-jun-2026.pdf, section: 5.3 Any deviation from Rule 5.2 above if necessitated by the, page: 25, version: 2026-06
+5.10 When a student repeats a course whose post-requisite awarded to each student based on his/her overall academic course(s) s/he has passed, s/he must give a written performance in a course. undertaking that if s/he fails the co
+urse, grades in all post- requisite courses will be changed to F grade.
+5.3 Any deviation from Rule 5.2 above if necessitated by the
+nature of course will be made with the approval of Dean of the 5.11 If a student repeats a failed course, the new grade will be used
+Faculty. for CGPA calculation, but if a student takes a new course in
+lieu of the course in which s/he failed, both the grades will be
+Academic Warning/Probation used for CGPA calculation.
+5.4 Minimum CGPA required to avoid academic warning is 2.00 Late conduct of Examination/ Missed Examination
+for all undergraduate programs.
+5.12 A student is expected to take mid and final examination as per
+5.5 If at the end of a semester (including summer semester) CGPA the announced schedule by the department. For more details,
+drops below 2.00, warning is issued, and warning count is please see Policy on Retake Examinations (Section 9).
+incremented by one.
+5.13 Late conduct of examination can be held on the
+5.6 If CGPA remains below 2.00 for 3 consecutive semesters, recommendation of the HoD and approval of the Director,
+warning count becomes three and the admission of student at only in cases of unavoidable emergencies/situations.
+the University is automatically closed. Examples of such situations are hospitalization, serious road
+accident or death of a very close blood relative. Documentary
+evidence must be submitted to request permission to appear
+Undergraduate Academic Rules and Regulations 2026 19
+[/EVIDENCE 4]
+[EVIDENCE 5] source: prospectus-2026-academic-rules-and-regulations.pdf, section: 3.99 would be included in the Dean's d) If the Warning Count becomes and FYP-II. To register for FYP-I, a, page: 2, version: 2026
+If, after a semester, the CGPA (FYP) attempts). of a student is less than the The Final Year Project, which is 8. Dean's List of Honors required minimum, the Warning completed in two regular Student's with an SGPA of 3.50 to Count
+ increases by one. semesters, is divided into FYP-l
+3.99 would be included in the Dean's d) If the Warning Count becomes and FYP-II. To register for FYP-I, a
+List of Honors which shall be three, admission of the student in student must have passed all
+maintained in each campus at a
+the University is closed. courses shown for the first six
+prominent place to give recognition
+
+zurai@ZurainAwan MINGW64 ~/rahbar (a03)
+$ 
