@@ -37,6 +37,24 @@ def embed(texts: list[str], settings: IndexerSettings) -> list[list[float]]:
     return all_vectors
 
 
+def model_digest(settings: IndexerSettings) -> str:
+    """The embedding model's content digest from Ollama (/api/tags), shortened to 12 hex
+    characters. It is the "embedding version" written into the collection metadata and
+    into every trace (A03 D1, F3): a tag like `nomic-embed-text:latest` can be re-pulled
+    and silently change, a digest cannot."""
+    url = settings.ollama_url.rstrip("/") + "/api/tags"
+    try:
+        with urllib.request.urlopen(url, timeout=15) as resp:
+            body = json.loads(resp.read().decode("utf-8"))
+    except Exception:
+        return "unknown"
+    want = settings.embed_model if ":" in settings.embed_model else settings.embed_model + ":latest"
+    for m in body.get("models", []):
+        if m.get("name") in (settings.embed_model, want) or m.get("model") in (settings.embed_model, want):
+            return str(m.get("digest", "unknown"))[:12]
+    return "unknown"
+
+
 # ---------------------------------------------------------------------------
 # Internal helpers
 # ---------------------------------------------------------------------------

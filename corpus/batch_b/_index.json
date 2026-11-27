@@ -1,0 +1,54 @@
+[
+  {
+    "file": "prospectus-academic-rules-copy.pdf",
+    "doc_id": "prospectus-academic-rules-mirror",
+    "title": "Academic Rules and Regulations (mirror copy)",
+    "doc_version": "2026",
+    "date": "2026-11-01",
+    "source": "own (Batch B exact duplicate)"
+  },
+  {
+    "file": "student-handbook-2026-mirror.pdf",
+    "doc_id": "student-handbook-mirror",
+    "title": "Student Handbook 2026 (mirror)",
+    "doc_version": "2026-06",
+    "date": "2026-11-01",
+    "source": "own (Batch B exact duplicate)"
+  },
+  {
+    "file": "annual-report-2023-24-partial.pdf",
+    "doc_id": "annual-report-2023-24-partial",
+    "title": "Annual Report 2023-24 (partial download)",
+    "doc_version": "2023-24",
+    "date": "2024-06-30",
+    "source": "own (Batch B truncated copy)",
+    "bytes": 5100456
+  },
+  {
+    "file": "fee-structure-2027-28.html",
+    "doc_id": "fee-structure",
+    "title": "Fee Structure page (2027-28)",
+    "doc_version": "2027-28",
+    "date": "2027-08-01",
+    "source": "own (Batch B newer version of the nu.edu.pk fee page)"
+  },
+  {
+    "file": "scanned-notice-garbled.txt",
+    "doc_id": "scanned-notice",
+    "title": "Scanned notice (garbled OCR)",
+    "doc_version": "2026-11",
+    "date": "2026-11-12",
+    "source": "own (Batch B garbled text)"
+  },
+  {
+    "file": "hostel-annex-scan.pdf",
+    "doc_id": "hostel-annex",
+    "title": "Hostel annex (blank scan)",
+    "doc_version": "2026-11",
+    "date": "2026-11-12",
+    "source": "own (Batch B empty scan)"
+  },
+  {
+    "file": "makeup-exam-notice.md"
+  }
+]

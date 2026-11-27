@@ -27,3 +27,13 @@ htmlcov/
 # Local scratch
 *.log
 .DS_Store
+
+# A03 Batch B files derived from public FAST-NUCES documents: regenerate with
+# python corpus/make_batch_b.py (the group-authored .md documents ARE committed)
+corpus/batch_b/prospectus-academic-rules-copy.pdf
+corpus/batch_b/student-handbook-2026-mirror.pdf
+corpus/batch_b/annual-report-2023-24-partial.pdf
+corpus/batch_b/fee-structure-2027-28.html
+corpus/batch_b/grading-policy-reformatted.md
+corpus/batch_b/scanned-notice-garbled.txt
+corpus/batch_b/hostel-annex-scan.pdf

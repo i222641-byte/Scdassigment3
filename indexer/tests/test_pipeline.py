@@ -189,7 +189,8 @@ def test_chunk_metadata_matches_model_schema(tmp_path: Path) -> None:
     for c in chunks:
         meta = c.metadata()
         required = {"source", "section", "page", "doc_version", "superseded"}
-        assert set(meta.keys()) == required
+        assert required <= set(meta.keys())          # A03 adds doc_id, title, status
+        assert {"doc_id", "status"} <= set(meta.keys())
         assert isinstance(meta["page"], int)
         assert isinstance(meta["superseded"], bool)
 

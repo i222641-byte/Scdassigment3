@@ -9,6 +9,10 @@ from pathlib import Path
 from .models import Document, Page
 
 
+class ExtractionError(RuntimeError):
+    """The file could not be parsed at all (corrupt, truncated, wrong format)."""
+
+
 def extract(path: str, doc_version: str, superseded: bool) -> Document:
     """Return the document's text page by page.
 
@@ -70,20 +74,27 @@ def _extract_pdf(path: Path, source: str, doc_version: str, superseded: bool) ->
                 if not text:
                     # No text layer — rasterise and OCR
                     text = _ocr_pdf_page(path, i).strip()
-                    ocr_used = True
+                    ocr_used = bool(text)   # only claim OCR when it recovered something
                 pages.append(Page(source=source, page=i + 1, text=text, ocr=ocr_used))
         return Document(source=source, doc_version=doc_version, superseded=superseded, pages=pages)
 
-    except Exception:
-        # pdfplumber not installed or file unreadable — try pypdf
-        return _extract_pdf_pypdf(path, source, doc_version, superseded)
+    except Exception as first_error:
+        # pdfplumber not installed or file unreadable — try pypdf; if that fails too the
+        # file is corrupt or truncated and the verification stage quarantines it.
+        try:
+            return _extract_pdf_pypdf(path, source, doc_version, superseded)
+        except Exception as second_error:
+            raise ExtractionError(
+                f"pdf unreadable: pdfplumber={type(first_error).__name__}: {first_error}; "
+                f"pypdf={type(second_error).__name__}: {second_error}"
+            ) from second_error
 
 
 def _extract_pdf_pypdf(path: Path, source: str, doc_version: str, superseded: bool) -> Document:
     """Fallback PDF extractor using pypdf (no OCR support here)."""
     from pypdf import PdfReader  # type: ignore
 
-    reader = PdfReader(str(path))
+    reader = PdfReader(str(path), strict=False)
     pages: list[Page] = []
     for i, page in enumerate(reader.pages):
         text = (page.extract_text() or "").strip()
@@ -103,6 +114,11 @@ def _extract_html(path: Path, source: str, doc_version: str, superseded: bool) -
     raw = re.sub(r"<script[^>]*>.*?</script>", "", raw, flags=re.DOTALL | re.IGNORECASE)
     raw = re.sub(r"<style[^>]*>.*?</style>", "", raw, flags=re.DOTALL | re.IGNORECASE)
     raw = re.sub(r"<!--.*?-->", "", raw, flags=re.DOTALL)
+    # Site chrome (A03): the nu.edu.pk pages carry a ~1,500-word navigation menu in
+    # <header>/<nav> and a link farm in <footer>. Left in, it dominates every chunk and
+    # makes every page of the site look like a near-duplicate of every other.
+    for tag in ("header", "nav", "footer"):
+        raw = re.sub(rf"<{tag}[\s>].*?</{tag}>", "\n", raw, flags=re.DOTALL | re.IGNORECASE)
 
     # Headings → their text on its own line
     raw = re.sub(
@@ -124,9 +140,10 @@ def _extract_html(path: Path, source: str, doc_version: str, superseded: bool) -
     raw = re.sub(r"<[^>]+>", "", raw)
 
     # Decode HTML entities and tidy up whitespace
-    text = html.unescape(raw)
+    text = html.unescape(raw).replace("﻿", "")
     text = re.sub(r"[ \t]+", " ", text)
-    text = re.sub(r"\n{3,}", "\n\n", text).strip()
+    text = re.sub(r"(?:[ \t]*\n){3,}", "\n\n", text)
+    text = re.sub(r"\n[ \t]+", "\n", text).strip()
 
     return Document(
         source=source,
