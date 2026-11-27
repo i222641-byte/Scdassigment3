@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Build docs/report/RAGOps_Report.pdf from the committed result files (A03 Part G).
+"""Build docs/report/Zurain_Awan_22i-2641_Taha_Yasir_22i-2429_RAGOps_Report.pdf from the committed result files (A03 Part G).
 
     python docs/report/build_report.py
 
@@ -159,7 +159,7 @@ def build(out: Path) -> None:
     story += appendix()
     from reportlab.platypus import BaseDocTemplate, Frame, PageTemplate
     doc = BaseDocTemplate(str(out), pagesize=A4, title="RAHBAR RAGOps — Assignment 03",
-                          author="Zurain, Taha Yasir")
+                          author="Zurain Awan (22i-2641), Taha Yasir (22i-2429)")
     pw, ph = A4
     portrait_frame = Frame(1.5 * cm, 1.4 * cm, pw - 3 * cm, ph - 2.7 * cm, id="p",
                            leftPadding=0, rightPadding=0, topPadding=0, bottomPadding=0)
@@ -175,4 +175,4 @@ def build(out: Path) -> None:
 
 
 if __name__ == "__main__":
-    build(Path(__file__).resolve().parent / "RAGOps_Report.pdf")
+    build(Path(__file__).resolve().parent / "Zurain_Awan_22i-2641_Taha_Yasir_22i-2429_RAGOps_Report.pdf")

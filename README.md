@@ -2,7 +2,9 @@
 
 [![CI](https://github.com/i222641-byte/Scdassigment3/actions/workflows/ci.yml/badge.svg)](https://github.com/i222641-byte/Scdassigment3/actions/workflows/ci.yml)
 
-**Authors:** Zurain (22i-2429) · Taha Yasir (22i-2641)
+**Authors:** Zurain Awan (22i-2641) · Taha Yasir (22i-2429)  
+**Repository:** https://github.com/i222641-byte/Scdassigment3  
+**Report:** [docs/report/Zurain_Awan_22i-2641_Taha_Yasir_22i-2429_RAGOps_Report.pdf](docs/report/Zurain_Awan_22i-2641_Taha_Yasir_22i-2429_RAGOps_Report.pdf)
 **Course:** Software Construction & Development — Assignment 02 (RAHBAR) and Assignment 03 (RAGOps)
 
 ---

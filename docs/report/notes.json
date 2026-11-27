@@ -55,11 +55,11 @@
  },
  "contributions": [
   [
-   "Zurain (22i-2429)",
+   "Zurain Awan (22i-2641)",
    "Part A (verification stage, data lake and quarantine/archive, incremental sync, restore, Batch B documents) and Part F (Kubernetes manifests, ingestion/eval Jobs and CronJob, resource measurements, controlled release and rollback); golden-set review."
   ],
   [
-   "Taha Yasir (22i-2641)",
+   "Taha Yasir (22i-2429)",
    "Parts B-E (evaluation suite and judge, release gate, trace record and trace tool, guardrails and citation repair, metrics, coverage and drift analysis) and the report; golden-set review and hand labels."
   ]
  ],

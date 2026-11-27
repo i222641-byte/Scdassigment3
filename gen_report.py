@@ -112,8 +112,8 @@ doc.add_paragraph()
 meta_lines = [
     ("Assignment 02", Pt(13), False),
     ("", Pt(6), False),
-    ("Zurain  —  22i-2429", Pt(12), True),
-    ("Taha Yasir  —  22i-2641", Pt(12), True),
+    ("Zurain Awan  —  22i-2641", Pt(12), True),
+    ("Taha Yasir  —  22i-2429", Pt(12), True),
     ("", Pt(6), False),
     ("FAST-NUCES", Pt(12), False),
     ("November 8, 2026", Pt(11), False),

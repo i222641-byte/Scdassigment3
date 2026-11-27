@@ -11,7 +11,7 @@ HERE = Path(__file__).resolve().parent
 FILES: dict[str, str] = json.loads((HERE / "files.json").read_text(encoding="utf-8"))
 NOTES: dict[str, Any] = json.loads((HERE / "notes.json").read_text(encoding="utf-8"))
 
-AUTHORS = [("Zurain", "22i-2429"), ("Taha Yasir", "22i-2641")]
+AUTHORS = [("Zurain Awan", "22i-2641"), ("Taha Yasir", "22i-2429")]
 REPO = "https://github.com/i222641-byte/Scdassigment3"
 
 
@@ -42,7 +42,7 @@ def sections(load, P, table, src, fmt, H1, H2, TITLE, BODY, SMALL, CELL) -> list
     o += [P("RAHBAR RAGOps: Operating a Grounded RAG Pipeline on Kubernetes", TITLE),
           P("CS4032 Software Construction and Development · Assignment 03 (RAGOps) · Fall 2026", SMALL),
           table([["Name", "Roll number"]] + [[n, r] for n, r in AUTHORS], [6, 4]),
-          P(f"Repository: <font face='Courier'>{REPO}</font> · cluster: minikube (docker driver, "
+          P(f"Repository: <link href='{REPO}' color='blue'><u><font face='Courier'>{REPO}</font></u></link> · cluster: minikube (docker driver, "
             "Calico), namespace <font face='Courier'>rahbar</font> · LLM <font face='Courier'>llama3.2:3b</font> "
             "and embeddings <font face='Courier'>nomic-embed-text</font> on Ollama (CPU only, laptop).", SMALL),
           P("We added a RAGOps layer to our A02 RAHBAR pipeline (FAST-NUCES academic documents): a data "

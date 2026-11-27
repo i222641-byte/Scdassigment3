@@ -2,7 +2,7 @@
 
 This is the design record for the RAGOps layer. Every number in the results sections comes
 from a file in `eval/results/` produced by our own runs on our minikube cluster; the file is
-named next to each table. The report PDF (`docs/report/RAGOps_Report.pdf`) is generated from
+named next to each table. The report PDF (`docs/report/Zurain_Awan_22i-2641_Taha_Yasir_22i-2429_RAGOps_Report.pdf`) is generated from
 the same files by `docs/report/build_report.py`.
 
 ## 1. What we added, mapped to the paper's Figure 3

@@ -177,8 +177,8 @@ doc.add_paragraph()
 
 for line in [
     "Authors:",
-    "Zurain  (22i-2429)",
-    "Taha Yasir  (22i-2641)",
+    "Zurain Awan  (22i-2641)",
+    "Taha Yasir  (22i-2429)",
     "",
     "Date:  November 8, 2026",
     "",
