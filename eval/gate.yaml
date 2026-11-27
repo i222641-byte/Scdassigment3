@@ -1,0 +1,11 @@
+# A03 C2 release gate thresholds (local copy; on the cluster the same keys live in the
+# rahbar-gate ConfigMap, k8s/base/configmap-gate.yaml, mounted at /config/gate.yaml).
+# Justifications are in docs/RAGOPS.md, section "Release gate".
+max_recall5_drop_points: 2        # candidate recall@5 may be at most 2 points below the baseline
+min_recall5_absolute: 0.60        # used only when no baseline exists yet
+min_faithfulness: 0.80            # share of answered questions the judge finds supported
+max_p95_latency_ms: 45000         # end-to-end p95 on our CPU-only laptop (see justification)
+abstention_not_below_baseline: true
+min_abstention_correctness: 1.0   # used only when no baseline exists yet
+min_citation_validity: 0.70        # raw model citations; revised from 0.80 after candidate c250 (see docs/RAGOPS.md)
+max_false_abstention_rate: 0.40   # guards against a candidate that "passes" by refusing everything

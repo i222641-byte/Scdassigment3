@@ -1,0 +1,32 @@
+{"kind": "paraphrase", "a": "What is the minimum CGPA to avoid academic warning?", "b": "Below which cumulative GPA does a student get an academic warning?"}
+{"kind": "paraphrase", "a": "How much attendance is required in each course?", "b": "What percentage of classes must a student attend?"}
+{"kind": "paraphrase", "a": "What is the tuition fee per credit hour?", "b": "How much does one credit hour cost?"}
+{"kind": "paraphrase", "a": "Can I withdraw from a course after the midterm?", "b": "Is it possible to drop out of a course once midterms are over?"}
+{"kind": "paraphrase", "a": "How many courses can I take in the summer semester?", "b": "What is the maximum number of summer courses allowed?"}
+{"kind": "paraphrase", "a": "What happens if I fail the lab but pass the theory?", "b": "If the theory part is passed and the lab is failed, what must be repeated?"}
+{"kind": "paraphrase", "a": "Is the admission fee refundable?", "b": "Will I get my admission fee back if I leave?"}
+{"kind": "paraphrase", "a": "What is the punishment for cheating in an exam?", "b": "What penalty applies to using unfair means during an examination?"}
+{"kind": "paraphrase", "a": "How long can I freeze my semester?", "b": "For how many semesters may a student suspend their studies?"}
+{"kind": "paraphrase", "a": "What CGPA do I need for a gold medal?", "b": "Which CGPA qualifies a student for a graduation medal?"}
+{"kind": "paraphrase", "a": "When does the Rector's list get published?", "b": "How often is the Rector's honour list issued?"}
+{"kind": "paraphrase", "a": "Can students use ChatGPT for assignments?", "b": "Is generative AI allowed when completing coursework?"}
+{"kind": "paraphrase", "a": "How do I transfer to another campus?", "b": "What is the procedure to move from one campus to a different one?"}
+{"kind": "paraphrase", "a": "What is the maximum duration to complete a bachelor's degree?", "b": "How many years at most can a student take to finish the BS degree?"}
+{"kind": "paraphrase", "a": "How is the SGPA calculated?", "b": "What formula gives the semester grade point average?"}
+{"kind": "paraphrase", "a": "What is the library fine for overdue books?", "b": "How much is charged per day for returning a book late?"}
+{"kind": "unrelated", "a": "What is the minimum CGPA to avoid academic warning?", "b": "How do I bake sourdough bread at home?"}
+{"kind": "unrelated", "a": "How much attendance is required in each course?", "b": "Which planet has the most moons?"}
+{"kind": "unrelated", "a": "What is the tuition fee per credit hour?", "b": "Who won the football world cup in 2010?"}
+{"kind": "unrelated", "a": "Can I withdraw from a course after the midterm?", "b": "What is the best way to water succulents?"}
+{"kind": "unrelated", "a": "How many courses can I take in the summer semester?", "b": "How does a car's catalytic converter work?"}
+{"kind": "unrelated", "a": "What happens if I fail the lab but pass the theory?", "b": "What spices go into a biryani masala?"}
+{"kind": "unrelated", "a": "Is the admission fee refundable?", "b": "How tall is Mount Everest?"}
+{"kind": "unrelated", "a": "What is the punishment for cheating in an exam?", "b": "How do whales communicate underwater?"}
+{"kind": "unrelated", "a": "How long can I freeze my semester?", "b": "How do I change a flat bicycle tyre?"}
+{"kind": "unrelated", "a": "What CGPA do I need for a gold medal?", "b": "What is the boiling point of water at high altitude?"}
+{"kind": "unrelated", "a": "When does the Rector's list get published?", "b": "Which guitar strings are best for beginners?"}
+{"kind": "unrelated", "a": "Can students use ChatGPT for assignments?", "b": "What time does the sun set in Karachi in June?"}
+{"kind": "unrelated", "a": "How do I transfer to another campus?", "b": "How many legs does a spider have?"}
+{"kind": "unrelated", "a": "What is the maximum duration to complete a bachelor's degree?", "b": "What is the recipe for mango lassi?"}
+{"kind": "unrelated", "a": "How is the SGPA calculated?", "b": "Who painted the Mona Lisa?"}
+{"kind": "unrelated", "a": "What is the library fine for overdue books?", "b": "How do bees make honey?"}

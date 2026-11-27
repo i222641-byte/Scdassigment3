@@ -1,0 +1,40 @@
+{"id": "l01", "query": "what cgpa do i need so i dont get a warning", "intended": "in-domain"}
+{"id": "l02", "query": "min attendance needed to sit the final exam?", "intended": "in-domain"}
+{"id": "l03", "query": "if my attendance is short what grade do i get", "intended": "in-domain"}
+{"id": "l04", "query": "how much is one credit hour for BS this year", "intended": "in-domain"}
+{"id": "l05", "query": "is the 30000 admission fee refundable or not", "intended": "in-domain"}
+{"id": "l06", "query": "how much tuition do i get back if i leave in the first 10 days", "intended": "in-domain"}
+{"id": "l07", "query": "how many grade points is an A minus", "intended": "in-domain"}
+{"id": "l08", "query": "what cgpa for summa cum laude", "intended": "in-domain"}
+{"id": "l09", "query": "what is the lowest cgpa to graduate", "intended": "in-domain"}
+{"id": "l10", "query": "can i take 3 courses in summer", "intended": "in-domain"}
+{"id": "l11", "query": "how long does summer semester last", "intended": "in-domain"}
+{"id": "l12", "query": "what happens if im caught cheating in a quiz", "intended": "in-domain"}
+{"id": "l13", "query": "can i transfer credits i earned 6 years ago", "intended": "in-domain"}
+{"id": "l14", "query": "how big is the peshawar campus", "intended": "in-domain"}
+{"id": "l15", "query": "last date to withdraw from a course", "intended": "in-domain"}
+{"id": "l16", "query": "how much absence can the hod excuse", "intended": "in-domain"}
+{"id": "l17", "query": "when did the 75th convocation happen", "intended": "in-domain"}
+{"id": "l18", "query": "is the EE program accredited by PEC", "intended": "in-domain"}
+{"id": "l19", "query": "how many companies came for recruitment drives", "intended": "in-domain"}
+{"id": "l20", "query": "what happens after 3 warnings in a row", "intended": "in-domain"}
+{"id": "l21", "query": "failed theory passed lab what do i repeat", "intended": "in-domain"}
+{"id": "l22", "query": "do the prospectus and handbook say the same about credit transfer grades", "intended": "in-domain"}
+{"id": "l23", "query": "how much does semester work count towards the final grade", "intended": "in-domain"}
+{"id": "l24", "query": "what cgpa do I need for a medal at graduation", "intended": "in-domain"}
+{"id": "l25", "query": "when was the icpc topi regional held", "intended": "in-domain"}
+{"id": "l26", "query": "how many semesters can I freeze my admission", "intended": "in-domain"}
+{"id": "l27", "query": "how is sgpa calculated", "intended": "in-domain"}
+{"id": "l28", "query": "what is the fee for rechecking a final paper", "intended": "in-domain"}
+{"id": "l29", "query": "which bus route goes to G-9 from the campus", "intended": "out-of-domain", "topic_hint": "transport"}
+{"id": "l30", "query": "how much is the university transport fee per semester", "intended": "out-of-domain", "topic_hint": "transport"}
+{"id": "l31", "query": "what time does the last university bus leave", "intended": "out-of-domain", "topic_hint": "transport"}
+{"id": "l32", "query": "what is on the cafeteria menu today", "intended": "out-of-domain", "topic_hint": "cafeteria"}
+{"id": "l33", "query": "how much does a lunch meal cost at the campus cafe", "intended": "out-of-domain", "topic_hint": "cafeteria"}
+{"id": "l34", "query": "does the campus gym have membership charges", "intended": "out-of-domain", "topic_hint": "sports"}
+{"id": "l35", "query": "how do I book the cricket ground for a match", "intended": "out-of-domain", "topic_hint": "sports"}
+{"id": "l36", "query": "what are the swimming pool timings", "intended": "out-of-domain", "topic_hint": "sports"}
+{"id": "l37", "query": "how do I get a car parking sticker", "intended": "out-of-domain", "topic_hint": "parking"}
+{"id": "l38", "query": "is there motorbike parking for students", "intended": "out-of-domain", "topic_hint": "parking"}
+{"id": "l39", "query": "how do I reset my campus wifi password", "intended": "out-of-domain", "topic_hint": "campus-it"}
+{"id": "l40", "query": "how to connect my laptop to the university wifi", "intended": "out-of-domain", "topic_hint": "campus-it"}
